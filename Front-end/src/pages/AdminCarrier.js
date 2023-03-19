@@ -1,3 +1,13 @@
+// import React from "react";
+// import { useState, useEffect, useContext } from "react";
+// import classnames from "classnames";
+// import { Navbar, NavItem, NavLink, Container, Nav } from "react-bootstrap";
+// import { useDispatch, useSelector } from "react-redux";
+// import cookies from "react-cookies";
+// import { Link } from "react-router-dom";
+import IndexHeader from "../Layout/IndexHeader";
+// import { useNavigate } from "react-router-dom";
+// import { UserContext } from "../App";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, NavLink } from "react-router-dom";
 import { UserContext } from "../App";
@@ -14,8 +24,52 @@ import LoginIcon from "@mui/icons-material/Login";
 import Logout from "@mui/icons-material/Logout";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import travellogo from "../assets/img/street-sign-direction-way-to-bus-station-street-sign-to-bus-station-151472383.jpg";
+//trang chủ admin
+export default function Admin() {
+  // const [navbarColor, setNavbarColor] = useState("navbar-transparent");
+  // const [navbarCollapse, setNavbarCollapse] = useState(false);
+  // const [user, dispatch] = useContext(UserContext);
+  // const navigate = useNavigate();
 
-const Header = (props) => {
+  // const logout = (event) => {
+  //   event.preventDefault();
+  //   cookies.remove("access_token");
+  //   cookies.remove("current_user");
+  //   dispatch({ type: "logout" });
+  //   navigate("/");
+  // };
+  // let path = (
+  //   <>
+  //     <Link className="nav-link text-success" to="/loginCarrier">
+  //       Login
+  //     </Link>
+  //     <Link className="nav-link text-success" to="/register">
+  //       Register
+  //     </Link>
+  //   </>
+  // );
+  // if (user !== null && user != undefined) {
+  //   if (user.isCarrier == true) {
+  //     path = (
+  //       <>
+  //         <div className="user-img">
+  //           <Link className="img-user text-success" to="/carrier">
+  //             <img className="avt" src={user.avatar_path} alt="avatar" />
+  //             user admin
+  //           </Link>
+  //         </div>
+  //         <Link className="nav-link text-success" to="#" onClick={logout}>
+  //           Logout
+  //         </Link>
+  //       </>
+  //     );
+  //   } else {
+  //     console.info("Ban ko phai admin");
+  //   }
+  // } else {
+  //   console.info("Ban ko dung ten dn");
+  // }
+
   const nav = useNavigate();
   const [isPopUp, setPopup] = useState("true");
   const [user, dispatch] = useContext(UserContext);
@@ -27,7 +81,7 @@ const Header = (props) => {
     cookies.remove("access_token");
     cookies.remove("current_user");
     dispatch({ type: "logout" });
-    nav("/");
+    nav("/carrier");
   };
 
   /* Account Menu */
@@ -44,33 +98,18 @@ const Header = (props) => {
   let menuHeader = (
     <>
       <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/" exact={true}>
-          Trang Chủ
+        <NavLink activeClassName="is-current" to="/carrier" exact={true}>
+          Trang Carrier
         </NavLink>
       </li>
       <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/route-list/">
-          Chuyến Đi
+        <NavLink activeClassName="is-current" to="/deleteTour">
+          Quản Lý Chuyến Đi
         </NavLink>
       </li>
       <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/garage">
-          Nhà Xe
-        </NavLink>
-      </li>
-      <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/about-us">
-          Thông Tin
-        </NavLink>
-      </li>
-      <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/contact">
-          Liên Hệ
-        </NavLink>
-      </li>
-       <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/bill">
-          Hóa Đơn
+        <NavLink activeClassName="is-current" to="/addArtical">
+          Quản Lý Nhà Xe
         </NavLink>
       </li>
     </>
@@ -136,7 +175,7 @@ const Header = (props) => {
           <Link to="/">{user.username}</Link>
         </li>
         <li className="dropdown">
-          <Link to="/" onClick={logout}>
+          <Link to="/carrier" onClick={logout}>
             Đăng xuất
           </Link>
         </li>
@@ -188,33 +227,43 @@ const Header = (props) => {
     setPopup(!isPopUp);
   };
 
-  if (user != null) {
-    console.log(user);
-    replaceRightPart = (
-      <>
-        <div href="#" className="login-right-header">
-          {user.username}
-        </div>
-        <div className="signout-right-header">
-          <div className="user-Header-avatarContainer" onClick={ToggleClass}>
-            <img
-              src={user.avatar_path}
-              alt="avatar-user"
-              className="user-Header-avatar"
-            />
+  if (user !== null && user != undefined) {
+    if (user.isCarrier == true) {
+      console.log(user);
+      replaceRightPart = (
+        <>
+          <div href="#" className="login-right-header">
+            {user.username}
           </div>
-          <div
-            className={
-              isPopUp ? "user-popup-header" : "user-popup-header showPopup"
-            }
-          >
-            <a href="#" className="user-popup-header--logout" onClick={logout}>
-              Đăng Xuất
-            </a>
+          <div className="signout-right-header">
+            <div className="user-Header-avatarContainer" onClick={ToggleClass}>
+              <img
+                src={user.avatar_path}
+                alt="avatar-user"
+                className="user-Header-avatar"
+              />
+            </div>
+            <div
+              className={
+                isPopUp ? "user-popup-header" : "user-popup-header showPopup"
+              }
+            >
+              <a
+                href="#"
+                className="user-popup-header--logout"
+                onClick={logout}
+              >
+                Đăng Xuất
+              </a>
+            </div>
           </div>
-        </div>
-      </>
-    );
+        </>
+      );
+    } else {
+      console.info("Ban ko phai admin");
+    }
+  } else {
+    console.info("Ban ko dung ten dn");
   }
 
   return (
@@ -297,7 +346,7 @@ const Header = (props) => {
                   </ListItemIcon>
                   <NavLink
                     activeClassName="is-current"
-                    to="/login"
+                    to="/loginCarrier"
                     style={{
                       color: "black",
                     }}
@@ -353,8 +402,7 @@ const Header = (props) => {
           </div>
         </div> */}
       </header>
+      <IndexHeader />
     </>
   );
-};
-
-export default Header;
+}

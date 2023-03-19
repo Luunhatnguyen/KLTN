@@ -3,7 +3,6 @@ import API, { endpoints } from "../configs/API";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import cookies from "react-cookies";
-import { useSelector } from "react-redux";
 import WOW from "wowjs";
 import Header from "../Layout/Header";
 import pageTitle9 from "../assets/img/14926f75f7d51ac044ccc0847cfb262f.png";
@@ -117,6 +116,7 @@ export default function ChangePassword(props) {
 
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle9})` }}
@@ -127,8 +127,8 @@ export default function ChangePassword(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Change Password</h1>
-            <p>Explore your next great journey</p>
+            <h1>Đổi mật khẩu</h1>
+            <p>Khám phá hành trình tuyệt vời tiếp theo của bạn</p>
           </div>
         </div>
       </section>
@@ -150,34 +150,34 @@ export default function ChangePassword(props) {
               data-wow-delay="00ms"
               data-wow-duration="1500ms"
             >
-              <p>Change Password</p>
-              <h2>Connect with us for a better journey</h2>
+              <p>Đổi mật khẩu</p>
+              <h2>Kết nối với chúng tôi để có một hành trình tốt hơn</h2>
             </div>
             <div className="form-inner">
-              <h3>Login with</h3>
+              <h3>Đăng nhập với</h3>
               <ul className="social-links clearfix">
                 <li>
                   <Link to="/">
-                    <span>Login with Facebook _</span>
+                    <span>Đăng nhập với Facebook _</span>
                     <i className="fab fa-facebook-f" />
                   </Link>
                 </li>
                 <li>
                   <Link to="/">
-                    <span>Login with Google _</span>
+                    <span>Đăng nhập với Google _</span>
                     <i className="fab fa-google-plus-g" />
                   </Link>
                 </li>
               </ul>
               <div className="text">
-                <span>Or</span>
+                <span>Hoặc</span>
               </div>
               <form onSubmit={changePassword} className="register-form">
                 <div className="row clearfix">
                   <ChangePassForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
                     id="oldPassword"
-                    label="Old Password"
+                    label="Mật khẩu cũ"
                     type="password"
                     value={oldPassword}
                     change={(event) => setOldPassword(event.target.value)}
@@ -185,7 +185,7 @@ export default function ChangePassword(props) {
                   <ChangePassForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
                     id="newPassword"
-                    label="New Password"
+                    label="Mật khẩu mới"
                     type="password"
                     value={newPassword}
                     change={(event) => setNewPassword(event.target.value)}
@@ -193,7 +193,7 @@ export default function ChangePassword(props) {
                   <ChangePassForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
                     id="confirmPass"
-                    label="Confirm New Password"
+                    label="Xác nhận mật khẩu mới"
                     type="password"
                     value={confirmPassword}
                     change={(event) => setConfirmPassword(event.target.value)}
@@ -201,14 +201,14 @@ export default function ChangePassword(props) {
                   <div className="col-lg-12 col-md-12 col-sm-12 column">
                     <div className="form-group message-btn">
                       <button type="submit" className="theme-btn">
-                        Confirm
+                        Xác nhận
                       </button>
                     </div>
                   </div>
                 </div>
               </form>
               <div className="other-text">
-                Already have an account? <Link to="/login">Login</Link>
+                Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link>
               </div>
             </div>
           </div>

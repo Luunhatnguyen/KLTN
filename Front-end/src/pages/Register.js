@@ -31,6 +31,7 @@ export default function Register(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const avatar = useRef();
 
   const [isCarrier, setIsCarrier] = useState("");
@@ -63,6 +64,7 @@ export default function Register(props) {
       formData.append("first_name", firstName);
       formData.append("last_name", lastName);
       formData.append("email", email);
+      formData.append("phone", phone);
       formData.append("username", username);
       formData.append("password", password);
       formData.append("avatar", avatar.current.files[0]);
@@ -134,6 +136,7 @@ export default function Register(props) {
 
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle9})` }}
@@ -144,8 +147,8 @@ export default function Register(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Register</h1>
-            <p>Explore your next great journey</p>
+            <h1>Đăng Ký</h1>
+            <p>Khám phá hành trình tuyệt vời tiếp theo của bạn</p>
           </div>
         </div>
       </section>
@@ -167,34 +170,34 @@ export default function Register(props) {
               data-wow-delay="00ms"
               data-wow-duration="1500ms"
             >
-              <p>Register</p>
-              <h2>Connect with us for a better journey</h2>
+              <p>Đăng Ký</p>
+              <h2>Kết nối với chúng tôi để có một hành trình tốt hơn</h2>
             </div>
             <div className="form-inner">
-              <h3>Register with</h3>
+              <h3>Đăng Ký với</h3>
               <ul className="social-links clearfix">
                 <li>
                   <Link to="/">
-                    <span>Login with Facebook _</span>
+                    <span>Đăng Nhập với Facebook _</span>
                     <i className="fab fa-facebook-f" />
                   </Link>
                 </li>
                 <li>
                   <Link to="/">
-                    <span>Login with Google _</span>
+                    <span>Đăng Nhập với Google _</span>
                     <i className="fab fa-google-plus-g" />
                   </Link>
                 </li>
               </ul>
               <div className="text">
-                <span>Or</span>
+                <span>Hoặc</span>
               </div>
               <form onSubmit={register} className="register-form">
                 <div className="row clearfix">
                   <RegisterForm
                     class="col-lg-6 col-md-6 col-sm-12 column"
                     id="firstname"
-                    label="First Name"
+                    label="Họ và Đệm"
                     type="text"
                     value={firstName}
                     change={(event) => setFirstName(event.target.value)}
@@ -202,7 +205,7 @@ export default function Register(props) {
                   <RegisterForm
                     class="col-lg-6 col-md-6 col-sm-12 column"
                     id="lastname"
-                    label="Last Name"
+                    label="Tên"
                     type="text"
                     value={lastName}
                     change={(event) => setLastName(event.target.value)}
@@ -217,8 +220,19 @@ export default function Register(props) {
                   />
                   <RegisterForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
+                    id="phone"
+                    label="Phone"
+                    type="text"
+                    value={phone}
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    required
+                    plac
+                    change={(event) => setPhone(event.target.value)}
+                  />
+                  <RegisterForm
+                    class="col-lg-12 col-md-12 col-sm-12 column"
                     id="username"
-                    label="User Name"
+                    label="Tên tài khoản"
                     type="text"
                     value={username}
                     change={(event) => setUsername(event.target.value)}
@@ -226,7 +240,7 @@ export default function Register(props) {
                   <RegisterForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
                     id="password"
-                    label="Password"
+                    label="Mật khẩu"
                     type="password"
                     value={password}
                     change={(event) => setPassword(event.target.value)}
@@ -234,7 +248,7 @@ export default function Register(props) {
                   <RegisterForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
                     id="confirmPass"
-                    label="Confirm Password"
+                    label="Xác nhận mật khẩu"
                     type="password"
                     value={confirmPassword}
                     change={(event) => setConfirmPassword(event.target.value)}
@@ -260,14 +274,14 @@ export default function Register(props) {
                   <div className="col-lg-12 col-md-12 col-sm-12 column">
                     <div className="form-group message-btn">
                       <button type="submit" className="theme-btn">
-                        Register
+                        Đăng Ký
                       </button>
                     </div>
                   </div>
                 </div>
               </form>
               <div className="other-text">
-                Already have an account? <Link to="/login">Login</Link>
+                Đã có sẵn tài khoản? <Link to="/login">Đăng Nhập</Link>
               </div>
             </div>
           </div>

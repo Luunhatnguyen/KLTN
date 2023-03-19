@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import API, { endpoints } from "../configs/API";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import WOW from "wowjs";
 import { makeStyles } from "@mui/styles";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import about3 from "../assets/img/14926f75f7d51ac044ccc0847cfb262f.png";
 import pageTitle6 from "../assets/img/Bus-Station-High-Quality-Wallpaper.jpg";
 import advice1 from "../image/advice/advice-1.jpg";
-import PreLoader from "../Components/PreLoader";
 import Header from "../Layout/Header";
 import {
   Button,
@@ -108,7 +105,7 @@ function Articals(props) {
           fontWeight: 600,
         }}
       >
-        Display {listArtical.length} above {count} result garage
+        Hiển thị {listArtical.length} trên {count} kết quả nhà xe
       </h3>
     </>
   );
@@ -138,6 +135,7 @@ function Articals(props) {
 
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle6})` }}
@@ -148,8 +146,8 @@ function Articals(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Garage Page</h1>
-            <p>Explore your next great journey</p>
+            <h1>Trang Nhà Xe</h1>
+            <p>Khám phá hành trình tuyệt vời tiếp theo của bạn</p>
           </div>
         </div>
       </section>
@@ -170,7 +168,7 @@ function Articals(props) {
               <div className="blog-sidebar default-sidebar ml-20">
                 <div className="sidebar-widget sidebar-search">
                   <div className="widget-title">
-                    <h3>Search Name Bus</h3>
+                    <h3>Tìm theo tên</h3>
                   </div>
                   <form onSubmit={searchArtical} className="search-form">
                     <div className="form-group">
@@ -188,7 +186,7 @@ function Articals(props) {
                 </div>
                 <div className="sidebar-widget review-widget">
                   <div className="widget-title">
-                    <h3>Rating</h3>
+                    <h3>Đánh giá</h3>
                   </div>
                   <div className="widget-content">
                     <FormControl component="fieldset">
@@ -201,27 +199,27 @@ function Articals(props) {
                         <FormControlLabel
                           value="1"
                           control={<Radio sx={colorRadio} />}
-                          label="1 star"
+                          label="1 sao"
                         />
                         <FormControlLabel
                           value="2"
                           control={<Radio sx={colorRadio} />}
-                          label="2 star"
+                          label="2 sao"
                         />
                         <FormControlLabel
                           value="3"
                           control={<Radio sx={colorRadio} />}
-                          label="3 star"
+                          label="3 sao"
                         />
                         <FormControlLabel
                           value="4"
                           control={<Radio sx={colorRadio} />}
-                          label="4 star"
+                          label="4 sao"
                         />
                         <FormControlLabel
                           value="5"
                           control={<Radio sx={colorRadio} />}
-                          label="5 star"
+                          label="5 sao"
                         />
                       </RadioGroup>
                     </FormControl>
@@ -229,26 +227,26 @@ function Articals(props) {
                 </div>
                 <div className="sidebar-widget category-widget">
                   <div className="widget-title">
-                    <h3>Classify</h3>
+                    <h3>Phân Loại</h3>
                   </div>
                   <div className="widget-content">
                     <ul className="category-list clearfix">
                       <li>
                         <Link to="/artical-details/2">
                           <i className="fas fa-long-arrow-alt-right" />
-                          Culture
+                          Văn hóa
                         </Link>
                       </li>
                       <li>
                         <Link to="/artical-details/3">
                           <i className="fas fa-long-arrow-alt-right" />
-                          Behavior
+                          Cư xử
                         </Link>
                       </li>
                       <li>
                         <Link to="/artical-details/4">
                           <i className="fas fa-long-arrow-alt-right" />
-                          Safe
+                          An toàn
                         </Link>
                       </li>
                     </ul>
@@ -264,9 +262,9 @@ function Articals(props) {
                   >
                     <div className="text">
                       <h2>
-                        Reduce <br />
-                        25% for <br />
-                        Dalat trips
+                        Giảm <br />
+                        25% cho <br />
+                        các chuyến đi đà lạt
                       </h2>
                     </div>
                   </div>

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import IndexHeader from "./IndexHeader";
-
+import Header from "../Layout/Header";
 const Home = () => {
   useEffect(() => {
     (function(d, m) {
       var kommunicateSettings = {
-        appId: "376926362ace98480b1c46cfc4dd81996",
+        appId: "2bcef2fa974ab40d51a072ff5258c46e8",
         popupWidget: true,
         automaticChatOpenOnNavigation: true,
       };
@@ -21,6 +21,7 @@ const Home = () => {
   }, []);
   return (
     <>
+      <Header />
       <IndexHeader />
     </>
   );

@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import API, { endpoints } from "../configs/API";
-import PreLoader from "../Components/PreLoader";
-import WOW from "wowjs";
-import { useLocation, useParams } from "react-router-dom";
 import pageTitle5 from "../image/background/page-title-5.jpg";
 import Header from "../Layout/Header";
 import NumberFormat from "react-number-format";
@@ -16,14 +12,14 @@ function Booking3(props) {
     notification = (
       <>
         <div className="confirm-box">
-          <h3>Payment success</h3>
+          <h3>Thanh toán thành công</h3>
           <div className="inner-box centred">
             <div className="icon-box">
               <i className="far fa-check-circle" />
             </div>
-            <h3>Thanks for booking the trip</h3>
+            <h3>Cảm ơn bạn đã đặt chuyến đi</h3>
             <p>
-              You will receive a confirmation email shortly
+              Hóa đơn sẽ gởi vào email của bạn trong thời gian ngắn.
               <br />
             </p>
           </div>
@@ -69,6 +65,7 @@ function Booking3(props) {
 
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle5})` }}

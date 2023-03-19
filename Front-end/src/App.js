@@ -1,14 +1,12 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./Layout/Header";
 import Home from "./Layout/Home";
 import { createContext, useEffect, useReducer, useState } from "react";
 import myReducer from "./Reducers/MyReducer";
 import cookies from "react-cookies";
 import FbLogin from "./Components/Facebook";
 import Google from "./Components/Google";
-import Bill from "./Components/Bill";
 import TripList from "./pages/TripList";
 import TourDetail from "./pages/TripDetail";
 import Articals from "./pages/Garages";
@@ -21,20 +19,19 @@ import Page404 from "./pages/Page404";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import ChangePassword from "./pages/ChangePassword";
-import LoginAdmin from "./pages/LoginAdmin";
-import Admin from "./pages/Admin";
+import LoginCarrier from "./pages/LoginCarrier";
+import AdminCarrier from "./pages/AdminCarrier";
 import AddArtical from "./pages/AddGarage";
 import UpdateArtical from "./pages/UpdateGarage";
 import TourDelete from "./pages/TripDelete";
 import Booking3 from "./pages/Booking3";
-import Routed from "./pages/Route";
-import Bills from "./Components/Bills";
 import MomoReturn from "./pages/MoMoReturn";
 import ScrollToTop from "./Components/ScrollToTop";
 import Footer2 from "./Layout/Footer";
-import Login from './pages/Login';
-import Register from './pages/Register';
-
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Routed from "./pages/Route";
+import Bill from "./pages/Bill";
 export const UserContext = createContext();
 
 function App() {
@@ -43,11 +40,11 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={[user, dispatch]}>
-        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route exact path="/route-list/" element={<TripList />} />
+          <Route path="/bill" element={<Bill />} />
           <Route exact path="/routed/" element={<Routed />} />
+          <Route exact path="/route-list/" element={<TripList />} />
           <Route
             exact
             path="/route-detail/:routerId/"
@@ -69,7 +66,6 @@ function App() {
           <Route exact path="/about-us" element={<About />} />
           <Route path="/fblogin/" element={<FbLogin />} />
           <Route path="/google/" element={<Google />} />
-          <Route path="/bill/:userId" element={<Bill />} />
           <Route exact path="/change-password" element={<ChangePassword />} />
           <Route exact path="/forgot-password" element={<ForgotPassword />} />
           <Route
@@ -83,8 +79,8 @@ function App() {
             path="/bus-details/:busId"
             element={<ArticalDetails />}
           />
-          <Route path="/loginAdmin" element={<LoginAdmin />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/loginCarrier" element={<LoginCarrier />} />
+          <Route path="/carrier" element={<AdminCarrier />} />
           <Route path="/addArtical" element={<AddArtical />} />
           <Route
             path="/articals/:articalId/update"
@@ -92,7 +88,6 @@ function App() {
           />
           <Route path="/deleteTour" element={<TourDelete />} />
           <Route path="/MomoReturn" element={<MomoReturn />} />
-          <Route path="/bills" element={<Bills />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
         </Routes>

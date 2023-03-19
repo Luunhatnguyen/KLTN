@@ -6,7 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import Apis, { endpoints } from "../configs/API";
 import { useLocation } from "react-router-dom";
 import AdminTour from "../Components/AdminTour";
-import Admin from "./Admin";
+import Admin from "./AdminCarrier";
 
 const TourDelete = () => {
   const [tours, setTours] = useState([]);

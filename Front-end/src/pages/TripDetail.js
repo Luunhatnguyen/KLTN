@@ -3,47 +3,25 @@ import { useSearchParams, useParams } from "react-router-dom";
 import API, { endpoints } from "../configs/API";
 import cookies from "react-cookies";
 import WOW from "wowjs";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Avatar, Rating } from "@mui/material";
-import NumberFormat from "react-number-format";
 import advice1 from "../assets/img/14926f75f7d51ac044ccc0847cfb262f.png";
-import PreLoader from "../Components/PreLoader";
 import MessageSnackbar from "../Components/MessageSnackbar";
-import Header from "../Layout/Header";
 import Item from "../Components/Item";
 import Booking1 from "./Booking1";
 import Booking2 from "./Booking2";
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  InputLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
-  Slider,
-  Pagination,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { UserContext } from "../App";
+import Header from "../Layout/Header";
 
 export default function TourDetail(props) {
-  const [route, setRoute] = useState([]);
-  const [services, setServices] = useState([]);
-
   const [rating, setRating] = useState(0);
-
   const [comment, setComment] = useState("");
   const [listComment, setListComment] = useState([]);
   const [commentChange, setCommentChange] = useState(0);
-
   const { routerId } = useParams();
-
   const [user, dispatch] = useContext(UserContext);
   const [cName, setcName] = useState("wrapper list");
+
   // State of message
   const [open, setOpen] = React.useState(false);
   const [msg, setMsg] = useState("");
@@ -153,10 +131,6 @@ export default function TourDetail(props) {
       );
     }
   };
-  /* End Comment Function */
-  // if (route.length === 0) {
-  //     return <PreLoader />
-  // }
 
   const [listRouteDetail, setListRouteDetail] = useState([]);
   const [listTypeBus, setListTypeBus] = useState([]);
@@ -354,6 +328,7 @@ export default function TourDetail(props) {
 
   return (
     <>
+      <Header />
       <section
         className="page-title style-three"
         style={{ backgroundImage: `url(${advice1})` }}
@@ -364,24 +339,9 @@ export default function TourDetail(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <div className="rating">
-              <span>
-                <i className="fas fa-star"></i>3{/* {route.rating} */}
-              </span>
-            </div>
             <h2 style={{ width: "750px" }}>
-              {/* {route.route_name} */}
               {fromGarage} - {toGarage}
             </h2>
-            <h3>
-              {/* <NumberFormat
-                            value={route.price_of_route}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            // prefix={'$'}
-                            style={{color:'orange',fontSize:'50px'}}
-                            />đ / 1 người */}
-            </h3>
           </div>
         </div>
       </section>
@@ -406,14 +366,14 @@ export default function TourDetail(props) {
                             <div className="item-shorting clearfix">
                               <div className="left-column pull-left">
                                 <div>
-                                  <h3>Search </h3>
+                                  <h3>Tìm </h3>
                                 </div>
                               </div>
                               <div className="right-column pull-right clearfix">
                                 <div className="short-box clearfix">
                                   <FormControl sx={{ m: 0, minWidth: 140 }}>
                                     <InputLabel id="select-sort-label">
-                                      Sort by price
+                                      Giá
                                     </InputLabel>
                                     <Select
                                       labelId="select-sort-label"
@@ -427,19 +387,23 @@ export default function TourDetail(props) {
                                         MenuProps: { disableScrollLock: true },
                                       }}
                                     >
+                                      <MenuItem value={"0"}>Giá</MenuItem>
                                       <MenuItem value={"asc"}>
-                                        Prices go up
+                                        Thấp - Cao
                                       </MenuItem>
                                       <MenuItem value={"desc"}>
-                                        Prices go down
+                                        Cao - Thấp
                                       </MenuItem>
                                     </Select>
                                   </FormControl>
                                 </div>
-                                <div className="menu-box">
+                                <div
+                                  className="menu-box"
+                                  style={{ marginRight: "100px" }}
+                                >
                                   <FormControl sx={{ m: 0, minWidth: 140 }}>
                                     <InputLabel id="select-sort-label">
-                                      Sort by vehicle type
+                                      Loại xe
                                     </InputLabel>
                                     <Select
                                       labelId="select-sort-label"
@@ -453,6 +417,12 @@ export default function TourDetail(props) {
                                         MenuProps: { disableScrollLock: true },
                                       }}
                                     >
+                                      <MenuItem
+                                        style={{ display: "flex" }}
+                                        value={"0"}
+                                      >
+                                        Loại xe
+                                      </MenuItem>
                                       {listTypeBus.map((c) => {
                                         return (
                                           <MenuItem
@@ -463,6 +433,37 @@ export default function TourDetail(props) {
                                           </MenuItem>
                                         );
                                       })}
+                                    </Select>
+                                  </FormControl>
+                                </div>
+                                <div
+                                  className="menu-box"
+                                  style={{ marginLeft: "25px" }}
+                                >
+                                  <FormControl sx={{ m: 0, minWidth: 140 }}>
+                                    <InputLabel
+                                      id="select-sort-label"
+                                      value="-1"
+                                    >
+                                      Giờ
+                                    </InputLabel>
+                                    <Select
+                                      labelId="select-sort-label"
+                                      id="sort-select"
+                                      onChange={(e) => {
+                                        setTimeState(e.target.value);
+                                      }}
+                                      autoWidth
+                                      lable="Sắp xếp theo"
+                                      inputProps={{
+                                        MenuProps: { disableScrollLock: true },
+                                      }}
+                                    >
+                                      <MenuItem value="-1">Giờ</MenuItem>
+                                      <MenuItem value="0">0h - 6h</MenuItem>
+                                      <MenuItem value="6">6h - 12h</MenuItem>
+                                      <MenuItem value="12">12h - 18h</MenuItem>
+                                      <MenuItem value="18">18h - 24h</MenuItem>
                                     </Select>
                                   </FormControl>
                                 </div>
@@ -504,13 +505,17 @@ export default function TourDetail(props) {
                               "h:" +
                               c.time.split(":")[1]
                             }
+                            stationFrom={c.busRouteID.routeID.city_from.name}
+                            stationTo={c.busRouteID.routeID.to_garage.name}
                             price={c.busRouteID.price}
                             busType={c.busRouteID.busID.typeBusID.name}
                             busTypeId={c.busRouteID.busID.typeBusID.id}
                             seat={c.seat}
-                            stationFrom={c.busRouteID.routeID.city_from.name}
-                            stationTo={c.busRouteID.routeID.to_garage.name}
                             date={c.date}
+                            point={c.busRouteID.routeID.point}
+                            destination={c.busRouteID.routeID.destination}
+                            distance={c.busRouteID.routeID.distance}
+                            hours={c.busRouteID.routeID.hours}
                           ></Item>
                         );
                       })
@@ -522,7 +527,7 @@ export default function TourDetail(props) {
                           padding: "10px",
                         }}
                       >
-                        No rides!!!
+                        Không có chuyến đi
                       </h1>
                     )}
                   </div>
@@ -552,37 +557,37 @@ export default function TourDetail(props) {
                 <div className="sidebar-widget downloads-widget">
                   <div className="form-widget">
                     <div className="widget-title">
-                      <h3>Experience the trip</h3>
+                      <h3>Trải nghiệm chuyến đi</h3>
                     </div>
                     <a
                       href="https://www.youtube.com/watch?v=YncYl8rREqQ&ab_channel=KOYMusicGroup"
                       style={{ color: "#fff" }}
                     >
                       <button type="submit" className="theme-btn">
-                        Click Here
+                        Bấm vào đây
                       </button>
                     </a>
                   </div>
                   <div className="widget-title">
-                    <h3>Download</h3>
+                    <h3>Tải xuống</h3>
                   </div>
                   <div className="widget-content">
                     <ul className="download-links clearfix">
                       <li>
                         <Link to="/">
-                          Guide
+                          Hướng Dẫn
                           <i className="fas fa-download"></i>
                         </Link>
                       </li>
                       <li>
                         <Link to="/">
-                          Trip documents
+                          Tài liệu chuyến đi
                           <i className="fas fa-download"></i>
                         </Link>
                       </li>
                       <li>
                         <Link to="/">
-                          Logo & Content
+                          Logo & Nội dung
                           <i className="fas fa-download"></i>
                         </Link>
                       </li>
@@ -596,9 +601,9 @@ export default function TourDetail(props) {
                   >
                     <div className="text">
                       <h2>
-                        Reduce <br />
-                        25% for <br />
-                        Dalat trips
+                        Giảm <br />
+                        25% cho <br />
+                        các chuyến đi Đà Lạt
                       </h2>
                     </div>
                   </div>

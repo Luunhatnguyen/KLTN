@@ -6,7 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import Apis, { endpoints } from "../configs/API";
 import { useLocation } from "react-router-dom";
 import AdminArtical from "../Components/AdminArtical";
-import Admin from "./Admin";
+import Admin from "./AdminCarrier";
 
 const AddArtical = () => {
   let navigate = useNavigate();

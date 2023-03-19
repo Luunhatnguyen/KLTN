@@ -1,16 +1,14 @@
-import { Container } from "react-bootstrap";
-// import "../static/Router.css";
 import { useEffect, useState } from "react";
 import Api, { endpoints } from "../configs/API";
 import { useSearchParams, useParams } from "react-router-dom";
 import Item from "../Components/Item";
-import Moment from "react-moment";
 import React from "react";
 import Booking1 from "./Booking1";
 import Booking2 from "./Booking2";
 import { Link } from "react-router-dom";
 import advice1 from "../assets/img/14926f75f7d51ac044ccc0847cfb262f.png";
 import MessageSnackbar from "../Components/MessageSnackbar";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Header from "../Layout/Header";
 function Router() {
   // State of message
@@ -39,6 +37,7 @@ function Router() {
   const [placeFrom, setPlaceFrom] = useState();
   const [timeTableID, setTimeTableID] = useState();
   const [step, setStep] = useState(1);
+  const [cName, setcName] = useState("wrapper list");
   const [classStep, setClassStep] = useState([
     { class: "current-step" },
     { class: "current-step" },
@@ -261,24 +260,9 @@ function Router() {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <div className="rating">
-              <span>
-                <i className="fas fa-star"></i>3{/* {route.rating} */}
-              </span>
-            </div>
             <h2 style={{ width: "750px" }}>
-              {/* {route.route_name} */}
               {fromGarage} - {toGarage}
             </h2>
-            <h3>
-              {/* <NumberFormat
-                            value={route.price_of_route}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            // prefix={'$'}
-                            style={{color:'orange',fontSize:'50px'}}
-                            />đ / 1 người */}
-            </h3>
           </div>
         </div>
       </section>
@@ -287,9 +271,135 @@ function Router() {
         <div className="auto-container">
           <div className="row clearfix">
             <div className="col-lg-8 col-md-12 col-sm-12 content-side">
-              <div className="tour-details-content">
+              <div
+                className="tour-details-content"
+                style={{ padding: "20px 0px" }}
+              >
                 {step === 1 ? (
                   <div>
+                    <section
+                      className="tours-page-section"
+                      style={{ padding: "10px 0px 0px 0px" }}
+                    >
+                      <div className="auto-container">
+                        <div className="row clearfix">
+                          <div className="col-lg-12 col-md-12 col-sm-12 content-side">
+                            <div className="item-shorting clearfix">
+                              <div className="left-column pull-left">
+                                <div>
+                                  <h3>Tìm </h3>
+                                </div>
+                              </div>
+                              <div className="right-column pull-right clearfix">
+                                <div className="short-box clearfix">
+                                  <FormControl sx={{ m: 0, minWidth: 140 }}>
+                                    <InputLabel id="select-sort-label">
+                                      Giá
+                                    </InputLabel>
+                                    <Select
+                                      labelId="select-sort-label"
+                                      id="sort-select"
+                                      onChange={(e) => {
+                                        setSortType(e.target.value);
+                                      }}
+                                      autoWidth
+                                      lable="Sắp xếp theo"
+                                      inputProps={{
+                                        MenuProps: { disableScrollLock: true },
+                                      }}
+                                    >
+                                      <MenuItem value={"0"}>Giá</MenuItem>
+                                      <MenuItem value={"asc"}>
+                                        Thấp - Cao
+                                      </MenuItem>
+                                      <MenuItem value={"desc"}>
+                                        Cao - Thấp
+                                      </MenuItem>
+                                    </Select>
+                                  </FormControl>
+                                </div>
+                                <div
+                                  className="menu-box"
+                                  style={{ marginRight: "100px" }}
+                                >
+                                  <FormControl sx={{ m: 0, minWidth: 140 }}>
+                                    <InputLabel id="select-sort-label">
+                                      Loại xe
+                                    </InputLabel>
+                                    <Select
+                                      labelId="select-sort-label"
+                                      id="sort-select"
+                                      onChange={(e) => {
+                                        setTypeBusState(e.target.value);
+                                      }}
+                                      autoWidth
+                                      lable="Sắp xếp theo"
+                                      inputProps={{
+                                        MenuProps: { disableScrollLock: true },
+                                      }}
+                                    >
+                                      <MenuItem
+                                        style={{ display: "flex" }}
+                                        value={"0"}
+                                      >
+                                        Loại xe
+                                      </MenuItem>
+                                      {listTypeBus.map((c) => {
+                                        return (
+                                          <MenuItem
+                                            style={{ display: "flex" }}
+                                            value={c.id}
+                                          >
+                                            {c.name}
+                                          </MenuItem>
+                                        );
+                                      })}
+                                    </Select>
+                                  </FormControl>
+                                </div>
+                                <div
+                                  className="menu-box"
+                                  style={{ marginLeft: "25px" }}
+                                >
+                                  <FormControl sx={{ m: 0, minWidth: 140 }}>
+                                    <InputLabel
+                                      id="select-sort-label"
+                                      value="-1"
+                                    >
+                                      Giờ
+                                    </InputLabel>
+                                    <Select
+                                      labelId="select-sort-label"
+                                      id="sort-select"
+                                      onChange={(e) => {
+                                        setTimeState(e.target.value);
+                                      }}
+                                      autoWidth
+                                      lable="Sắp xếp theo"
+                                      inputProps={{
+                                        MenuProps: { disableScrollLock: true },
+                                      }}
+                                    >
+                                      <MenuItem value="-1">Giờ</MenuItem>
+                                      <MenuItem value="0">0h - 6h</MenuItem>
+                                      <MenuItem value="6">6h - 12h</MenuItem>
+                                      <MenuItem value="12">12h - 18h</MenuItem>
+                                      <MenuItem value="18">18h - 24h</MenuItem>
+                                    </Select>
+                                  </FormControl>
+                                </div>
+                              </div>
+                            </div>
+                            <div className={cName}>{/* {routes} */}</div>
+                            <div className="pagination-wrapper">
+                              <ul className="pagination clearfix">
+                                {/* {pages} */}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
                     {sortByType.length > 0 ? (
                       sortByType.map((c) => {
                         return (
@@ -316,13 +426,17 @@ function Router() {
                               "h:" +
                               c.time.split(":")[1]
                             }
+                            stationFrom={c.busRouteID.routeID.city_from.name}
+                            stationTo={c.busRouteID.routeID.to_garage.name}
                             price={c.busRouteID.price}
                             busType={c.busRouteID.busID.typeBusID.name}
                             busTypeId={c.busRouteID.busID.typeBusID.id}
                             seat={c.seat}
-                            stationFrom={c.busRouteID.routeID.city_from.name}
-                            stationTo={c.busRouteID.routeID.to_garage.name}
                             date={c.date}
+                            point={c.busRouteID.routeID.point}
+                            destination={c.busRouteID.routeID.destination}
+                            distance={c.busRouteID.routeID.distance}
+                            hours={c.busRouteID.routeID.hours}
                           ></Item>
                         );
                       })
@@ -334,7 +448,7 @@ function Router() {
                           padding: "10px",
                         }}
                       >
-                        No rides!!!
+                        Không có chuyến đi
                       </h1>
                     )}
                   </div>
@@ -343,7 +457,7 @@ function Router() {
                     step={setStepState}
                     clearSeat={clearSeatSubmit}
                     userInfo={setUserInfoState}
-                  ></Booking1>
+                  />
                 ) : step === 3 ? (
                   <Booking2
                     step={setStepState}
@@ -364,37 +478,37 @@ function Router() {
                 <div className="sidebar-widget downloads-widget">
                   <div className="form-widget">
                     <div className="widget-title">
-                      <h3>Đặt Tour</h3>
+                      <h3>Trải nghiệm chuyến đi</h3>
                     </div>
-                    <Link
-                      to={"/route-detail/" + routerId + "/booking-1"}
+                    <a
+                      href="https://www.youtube.com/watch?v=YncYl8rREqQ&ab_channel=KOYMusicGroup"
                       style={{ color: "#fff" }}
                     >
                       <button type="submit" className="theme-btn">
-                        Nhấn vào đây
+                        Bấm vào đây
                       </button>
-                    </Link>
+                    </a>
                   </div>
                   <div className="widget-title">
-                    <h3>Download</h3>
+                    <h3>Tải xuống</h3>
                   </div>
                   <div className="widget-content">
                     <ul className="download-links clearfix">
                       <li>
                         <Link to="/">
-                          Guide
+                          Hướng Dẫn
                           <i className="fas fa-download"></i>
                         </Link>
                       </li>
                       <li>
                         <Link to="/">
-                          Trip documents
+                          Tài liệu chuyến đi
                           <i className="fas fa-download"></i>
                         </Link>
                       </li>
                       <li>
                         <Link to="/">
-                          Logo & Content
+                          Logo & Nội dung
                           <i className="fas fa-download"></i>
                         </Link>
                       </li>
@@ -408,9 +522,9 @@ function Router() {
                   >
                     <div className="text">
                       <h2>
-                        Reduce <br />
-                        25% for <br />
-                        Dalat trips
+                        Giảm <br />
+                        25% cho <br />
+                        các chuyến đi Đà Lạt
                       </h2>
                     </div>
                   </div>

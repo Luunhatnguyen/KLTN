@@ -704,30 +704,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, a, .td
 
 
 
-.seatStatus-free{
-  border: 2px solid blue;
-  color: blue;
-  cursor: pointer;
-  border-radius: 20px;
-  margin: 5%;
-  text-align: center;
-}
-.seatStatus-selected{
-  border: 2px solid #ff7c5b;
-  color: #ff7c5b;
-  cursor: pointer;
-  border-radius: 20px;
-  margin: 5%;
-  text-align: center;
-}
-.seatStatus-pass{
-  border: 2px solid gray;
-  color: gray;
-  cursor: not-allowed;
-  border-radius: 20px;
-  margin: 5%;
-  text-align: center;
-}
+
 
 .seat-statuses{
   justify-content: space-evenly;
@@ -806,7 +783,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, a, .td
   font-weight: 500;
   background-color: #ff7c5b;
   text-align: center;
-  margin-top: 45px;
+  margin-top: 20px;
   max-width: 25%;
 }
 .back-btn {

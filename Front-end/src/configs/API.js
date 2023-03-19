@@ -6,6 +6,7 @@ export let endpoints = {
   "user-id": (userId) => `/users/${userId}/`,
   current_user: "/users/current-user/",
   oauth2_info: "/oauth2-info/",
+  carrier: "/carrier/",
   "change-password": "/users/change-password/",
   "forgot-password": "/reset-password/",
   "verify-token": "/reset-password/validate_token/",
@@ -35,7 +36,6 @@ export let endpoints = {
     `/timetables/${timetableID}/bookingdetails/`,
   bookingdetails: "/bookingdetails/",
   "last-booking": "/bookings/last-book/",
-  "booking-history": "/bookinghistorys/",
   "like-busroute": (busrouteId) => `/busroutes/${busrouteId}/like/`,
   "busroute-comments": (busrouteId) => `/busroutes/${busrouteId}/comments/`,
   ratings: "/ratings/",
@@ -45,14 +45,14 @@ export let endpoints = {
   "checked-user": (busrouteId) => `/busroutes/${busrouteId}/checked-user/`,
   garages: "/garages/",
   "garages-detail": (garagesId) => `/garages/${garagesId}`,
-  // "send-mail-book-bus": (bookingID) => `/bookings/${bookingID}/send_mail/`,
-  "send_mail_booking":"/send_mail_booking/send_mail_booking/",
+  send_mail_booking: "/send_mail_booking/send_mail_booking/",
   momo: "/momo/request_momo/",
   "return-momo": "/momo/return-momo/",
-  "booking-pending": (userID) => `/bookings/booking_pending/?userID=${userID}`,
   "history-find-by-bookingID": (bookingID) =>
     `/bookinghistorys/find_by_bookingID/?bookingID=${bookingID}`,
   bookingID: (bookingID) => `/bookings/${bookingID}`,
+  busroutes: "/busroutes/",
+  "busroutes-detail": (busRouteId) => `/busroutes/${busRouteId}`,
 };
 
 export const authApi = () =>

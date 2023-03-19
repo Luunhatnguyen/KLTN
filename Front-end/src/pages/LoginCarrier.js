@@ -1,30 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Row } from "react-bootstrap";
 import { Col, Form } from "react-bootstrap";
 import Apis, { endpoints } from "../configs/API";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { loginUser } from '../ActionCreators/UserCreators';
 import cookies from "react-cookies";
-import Header from "../Layout/Header";
 import { Link } from "react-router-dom";
 import pageTitle5 from "../image/background/page-title-5.jpg";
 import shape16 from "../image/shape/shape-16.png";
 import shape17 from "../image/shape/shape-17.png";
-
+import { UserContext } from "../App";
+import MessageSnackbar from "../Components/MessageSnackbar";
+import Header from "../Layout/Header";
 function LoginAdmin() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [user, dispatch] = useContext(UserContext);
+  const [open, setOpen] = React.useState(false);
+  const [msg, setMsg] = useState("");
+  const [typeMsg, setTypeMsg] = useState("");
+  const [titleMsg, setTitleMsg] = useState("");
 
+  const createMessage = (title, msg, type) => {
+    setMsg(msg);
+    setTitleMsg(title);
+    setTypeMsg(type);
+  };
+  const handleMessageClose = () => {
+    setOpen(false);
+  };
   const login = async (event) => {
     event.preventDefault();
 
     try {
-      let info = await Apis.get(endpoints["oauth2-info"]);
+      let info = await Apis.get(endpoints["oauth2_info"]);
       let res = await Apis.post(endpoints["login"], {
         client_id: info.data.client_id,
         client_secret: info.data.client_secret,
@@ -35,27 +46,42 @@ function LoginAdmin() {
 
       cookies.save("access_token", res.data.access_token);
 
-      let user = await Apis.get(endpoints["current-user"], {
+      let user = await Apis.get(endpoints["current_user"], {
         headers: {
           Authorization: `Bearer ${cookies.load("access_token")}`,
         },
       });
 
       console.info(user);
-
       cookies.save("user", user.data);
 
-      // dispatch(loginUser(user.data))
-      navigate("/admin");
+      //permission
+      let permission = await Apis.post(endpoints["carrier"], {
+        username: username,
+        password: password,
+        isCarrier: user.data.isCarrier,
+      });
+      console.info(permission);
+
+      dispatch({
+        type: "login",
+        payload: user.data,
+      });
+      navigate("/carrier");
     } catch (err) {
       console.error(err);
+      setOpen(true);
+      createMessage(
+        "Lỗi",
+        "Bạn không có quyền đăng nhập trang nhà xe !",
+        "error"
+      );
     }
   };
 
   return (
     <>
       <Header />
-
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle5})` }}
@@ -67,7 +93,7 @@ function LoginAdmin() {
             data-wow-duration="1500ms"
           >
             <h1>Đăng Nhập</h1>
-            <p>Khám phá cuộc phiêu lưu tuyệt vời tiếp theo của bạn</p>
+            <p>Trang quản trị Nhà Xe</p>
           </div>
         </div>
       </section>
@@ -90,32 +116,24 @@ function LoginAdmin() {
           <div className="inner-box">
             <div className="sec-title centred">
               <p>Đăng Nhập</p>
-              <h2>Kết nối với chúng tôi để có chuyến tham quan tốt hơn</h2>
+              <h2>Trang quản trị Nhà Xe</h2>
             </div>
             <div className="form-inner">
-              <h3>Đăng Nhập với</h3>
-              <ul className="social-links clearfix">
-                <li>
-                  <Link to="/">
-                    <span>Đăng Nhập với Facebook _</span>
-                    <i className="fab fa-facebook-f" />
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    <span>Đăng Nhập với Google _</span>
-                    <i className="fab fa-google-plus-g" />
-                  </Link>
-                </li>
-              </ul>
-              <div className="text">
-                <span>hoặc</span>
-              </div>
               <Form onSubmit={login}>
                 <div className="row clearfix">
-                  <h1 className="text-center text-success">ĐĂNG NHẬP ADMIN</h1>
+                  <h1
+                    className="text-center"
+                    style={{
+                      " fontSize": "14px",
+                      " font-weight": 600,
+                      color: "#8a8a8a",
+                      fontFamily: "Playfair Display', serif",
+                    }}
+                  >
+                    ĐĂNG NHẬP
+                  </h1>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Tên đăng nhập</Form.Label>
+                    <Form.Label>Tên tài khoản</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Username"
@@ -142,7 +160,7 @@ function LoginAdmin() {
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 column">
                     <div className="form-group message-btn">
-                      <Button type="submit" className="theme-btn">
+                      <Button type="submit" className="theme-btn color-css">
                         Đăng nhập
                       </Button>
                     </div>
@@ -156,6 +174,13 @@ function LoginAdmin() {
           </div>
         </div>
       </section>
+      <MessageSnackbar
+        handleClose={handleMessageClose}
+        isOpen={open}
+        msg={msg}
+        type={typeMsg}
+        title={titleMsg}
+      />
     </>
   );
 }

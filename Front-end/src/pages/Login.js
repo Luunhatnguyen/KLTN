@@ -2,14 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import API, { authApi, endpoints } from "../configs/API";
 import cookies from "react-cookies";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import WOW from "wowjs";
-// import { loginUser } from "../ActionCreators/UserCreators";
 import pageTitle5 from "../assets/img/14926f75f7d51ac044ccc0847cfb262f.png";
 import shape16 from "../image/shape/shape-16.png";
 import shape17 from "../image/shape/shape-17.png";
 import MessageSnackbar from "../Components/MessageSnackbar";
-import Header from "../Layout/Header";
 import FirebaseInit from "../firebase/firebase-init";
 import {
   getAuth,
@@ -19,6 +16,7 @@ import {
 } from "firebase/auth";
 import { UserContext } from "../App";
 import FacebookLogin from "react-facebook-login";
+import Header from "../Layout/Header";
 
 export default function Login() {
   const [username, setUsername] = useState();
@@ -144,6 +142,7 @@ export default function Login() {
 
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle5})` }}
@@ -154,8 +153,8 @@ export default function Login() {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Login</h1>
-            <p>Explore your next great journey</p>
+            <h1>Đăng Nhập</h1>
+            <p>Kết nối với chúng tôi để có một hành trình tốt hơn</p>
           </div>
         </div>
       </section>
@@ -177,63 +176,57 @@ export default function Login() {
         <div className="auto-container">
           <div className="inner-box">
             <div className="sec-title centred">
-              <p>Login</p>
-              <h2>Connect with us for a better journey</h2>
+              <p>Đăng nhập</p>
+              <h2>Kết nối với chúng tôi để có một hành trình tốt hơn</h2>
             </div>
             <div className="form-inner">
-              <h3>Login with</h3>
+              <h3>Đăng Nhập Với</h3>
               <ul className="social-links clearfix">
-                
-                <FacebookLogin
-                  appId="856371595431946"
-                  autoLoad={false}
-                  fields="name,email,picture"
-                  callback={responseFacebook}
-                />
-                {/* <button className="button-login">
-                  <span>Login with Facebook _</span>
-                  <i className="fab fa-facebook-f" />
-                </button> */}
-                <button
-                  className="button-login fab fa-google-plus-g"
-                  onClick={handleGoogleSignedIn}
-                >
-                  Log in with Google
-                </button>
-                {/* <button className="button-login" onClick={handleGoogleSignedIn}>
-                  Log in with Google _<i class="fab fa-google-plus-g"></i>
-                </button> */}
-                {/* <li>
-                    <span>Login with  Google _</span>
-                    <button className="buttonsLogin-loginOtherWay--google fab fa-google-plus-g"
-                        onClick={handleGoogleSignedIn} />
-                </li> */}
+                <li>
+                  <FacebookLogin
+                    appId="856371595431946"
+                    autoLoad={false}
+                    fields="name,email,picture"
+                    cssClass="my-facebook-button-class"
+                    icon="fab fa-facebook-f"
+                    callback={responseFacebook}
+                    textButton=""
+                  />
+                </li>
+                <li>
+                  <button
+                    className="my-google-button-class fab fa-google-plus-g"
+                    onClick={handleGoogleSignedIn}
+                  >
+                    <span>Đăng Nhập với Google _</span>
+                  </button>
+                </li>
               </ul>
               <div className="text">
-                <span>Or</span>
+                <span>Hoặc</span>
               </div>
               <form onSubmit={login} className="register-form">
                 <div className="row clearfix">
                   <LoginForm
                     id="username"
-                    label="User name"
+                    label="Tên tài khoản"
                     field={username}
                     change={(event) => setUsername(event.target.value)}
                     type="text"
-                    placeholder="Enter User name"
+                    placeholder="Nhập tên tài khoản"
                   />
                   <LoginForm
                     id="password"
-                    label="Password"
+                    label="Mật khẩu"
                     field={password}
                     change={(event) => setPassword(event.target.value)}
                     type="password"
-                    placeholder="Enter Password"
+                    placeholder="Nhập mật khẩu"
                   />
                   <div className="col-lg-12 col-md-12 col-sm-12 column">
                     <div className="form-group">
                       <div className="forgor-password text-right">
-                        <Link to="/forgot-password">Forgot password?</Link>
+                        <Link to="/forgot-password">Quên mật khẩu?</Link>
                       </div>
                     </div>
                   </div>
@@ -243,17 +236,14 @@ export default function Login() {
                   >
                     <div className="form-group message-btn">
                       <button type="submit" className="theme-btn">
-                        Login
+                        Đăng Nhập
                       </button>
                     </div>
-                    {/* <div className="form-group message-btn"style={{marginLeft:'50px'}}>
-                                            {path}
-                                        </div> */}
                   </div>
                 </div>
               </form>
               <div className="other-text">
-                No account? <Link to="/register">Register Now</Link>
+                Chưa có tài khoản? <Link to="/register">Đăng Ký Ngay</Link>
               </div>
             </div>
           </div>

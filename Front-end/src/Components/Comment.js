@@ -149,7 +149,7 @@ function Comment(props) {
               <div className="comment-inner" style={{ textAlign: "left" }}>
                 <div className="comment-info clearfix">
                   <span className="post-date" style={{ float: "left" }}>
-                    Post date{" "}
+                   Đăng ngày{" "}
                     <Moment format="DD/MM/YYYY">{item.updated_date}</Moment>{" "}
                   </span>
                   <div
@@ -165,7 +165,7 @@ function Comment(props) {
                       className="gJvXJw color--positive"
                       style={{ marginTop: "3px", fontSize: "15px" }}
                     >
-                      Already bought tickets
+                      Đã mua vé
                     </p>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ function Comment(props) {
                   {RatingList(GetRating(item.id))}
                 </div>
                 <div className="author-comment">
-                  <span>Commented by:</span> {item.user.first_name}{" "}
+                  <span>Bình luận bởi:</span> {item.user.first_name}{" "}
                   {item.user.last_name}
                 </div>
               </div>
@@ -297,7 +297,7 @@ function Comment(props) {
             <div style={{ width: "125px" }}>{globalRating(averagRating)}</div>
           </div>
         </div>
-        <span>• {comments.length} rating</span>
+        <span>• {comments.length} đánh giá</span>
       </div>
 
       <div
@@ -314,7 +314,7 @@ function Comment(props) {
             paddingLeft: "7px",
           }}
         >
-          Rating
+          Đánh Giá
         </h2>
         <div className="rating-comment">
           <div
@@ -419,7 +419,7 @@ function Comment(props) {
                     name="detail"
                     rows="4"
                     cols="5"
-                    placeholder="Please leave your experience and review about the trip, we always try our best to improve the quality of service according to your needs."
+                    placeholder="Hãy để lại trải nghiệm và đánh giá của bạn về chuyến đi, chúng tôi luôn cố gắng hết sức để cải thiện chất lượng dịch vụ theo nhu cầu của bạn."
                     className="cps-textarea"
                     value={content}
                     onChange={(evt) => setContentState(evt.target.value)}
@@ -429,7 +429,7 @@ function Comment(props) {
                   {isBooking == true ? (
                     <button className="theme-btn" onClick={addComment}>
                       <IoIosPaperPlane />
-                      &nbsp;Send
+                      &nbsp;Gửi
                     </button>
                   ) : (
                     <button
@@ -437,14 +437,14 @@ function Comment(props) {
                       style={{ cursor: "not-allowed" }}
                     >
                       <IoIosPaperPlane />
-                      &nbsp;Send
+                      &nbsp;Gửi
                     </button>
                   )}
                   <span
                     id="sub-comment-error"
                     className="comment-error error-text error d-none"
                   >
-                    Please enter the comment
+                    Vui lòng nhập bình luận
                   </span>
                 </div>
               </div>

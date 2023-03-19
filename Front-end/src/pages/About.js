@@ -1,6 +1,5 @@
 import React from "react";
 import WOW from "wowjs";
-import Header from "../Layout/Header";
 import shape2 from "../image/shape/shape-2.png";
 import shape3 from "../image/shape/shape-3.png";
 import shape12 from "../image/shape/shape-12.png";
@@ -9,10 +8,11 @@ import team1 from "../assets/img/logo.png";
 import video1 from "../assets/img/Bus-Station-High-Quality-Wallpaper.jpg";
 import about3 from "../assets/img/banner-mockup-bus-station-stop-departing-red-blank-poster-mock-up-inside-advertising-empty-template-public-141508844.jpg";
 import { Link } from "react-router-dom";
-
+import Header from "../Layout/Header";
 export default function About() {
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{
@@ -28,8 +28,8 @@ export default function About() {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Infomation</h1>
-            <p>Explore your next great journey</p>
+            <h1>Thông tin</h1>
+            <p>Khám phá hành trình tuyệt vời tiếp theo của bạn</p>
           </div>
         </div>
       </section>
@@ -65,10 +65,7 @@ function AboutStyleTwoSection() {
                   data-wow-duration="1500ms"
                 >
                   <p>Bus Station</p>
-                  <h2>
-                    The best best vehicles joint stock company in the country
-                    from 2022.
-                  </h2>
+                  <h2>Công ty cổ phần xe tốt nhất cả nước từ năm 2022.</h2>
                 </div>
                 <div
                   className="text wow fadeInLeft animated animated"
@@ -76,10 +73,10 @@ function AboutStyleTwoSection() {
                   data-wow-duration="1500ms"
                 >
                   <p>
-                    BusStation is a company's branding Travel and Service Co.,
-                    Ltd BusStation. BusStation is evaluated as one of the
-                    prestigious brands in international and domestic enterprises
-                    of Vietnam.
+                    BusStation là thương hiệu của công ty Du lịch và Dịch vụ
+                    Co., Ltd Trạm xe buýt. BusStation được đánh giá là một trong
+                    những thương hiệu uy tín trong các doanh nghiệp quốc tế và
+                    trong nước của Việt Nam.
                   </p>
                 </div>
                 <div
@@ -88,7 +85,7 @@ function AboutStyleTwoSection() {
                   data-wow-duration="1500ms"
                 >
                   <Link to="/tour-list" className="theme-btn">
-                    Learn about
+                    Tìm hiểu về
                   </Link>
                 </div>
               </div>
@@ -153,14 +150,14 @@ function AboutVideoSection() {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            Explore your journey
+            Khám phá hành trình của bạn
           </h2>
           <p
             className="wow fadeInDown animated animated"
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            Your new journey idea
+            Ý tưởng hành trình mới của bạn
           </p>
           <div
             className="video-btn wow fadeInUp animated animated"
@@ -208,8 +205,8 @@ function AboutTeamSection() {
       </div>
       <div className="auto-container">
         <div className="sec-title">
-          <p>Tour guide</p>
-          <h2>Guides</h2>
+          <p>HƯỚNG DẪN VIÊN DU LỊCH</p>
+          <h2>Hướng dẫn</h2>
         </div>
         <div className="row clearfix">
           <div className="col-lg-4 col-md-6 col-sm-12 team-block">
@@ -226,7 +223,7 @@ function AboutTeamSection() {
                   <h3>
                     <Link to="/">Nhật Nguyên</Link>
                   </h3>
-                  <span className="designation">Tour guide</span>
+                  <span className="designation">HƯỚNG DẪN VIÊN DU LỊCH</span>
                   <ul className="social-links clearfix">
                     <li>
                       <Link to="/">
@@ -262,7 +259,7 @@ function AboutTeamSection() {
                   <h3>
                     <Link to="/">Huy Nguyên</Link>
                   </h3>
-                  <span className="designation">Tour guide</span>
+                  <span className="designation">HƯỚNG DẪN VIÊN DU LỊCH</span>
                   <ul className="social-links clearfix">
                     <li>
                       <Link to="/">
@@ -298,7 +295,7 @@ function AboutTeamSection() {
                   <h3>
                     <Link to="/">Hữu Tiên</Link>
                   </h3>
-                  <span className="designation">Tour guide</span>
+                  <span className="designation">HƯỚNG DẪN VIÊN DU LỊCH</span>
                   <ul className="social-links clearfix">
                     <li>
                       <Link to="/">

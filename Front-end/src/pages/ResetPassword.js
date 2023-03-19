@@ -8,7 +8,7 @@ import pageTitle9 from "../image/background/page-title-9.jpg";
 import shape16 from "../image/shape/shape-16.png";
 import shape17 from "../image/shape/shape-17.png";
 import MessageSnackbar from "../Components/MessageSnackbar";
-
+import Header from "../Layout/Header";
 export default function ResetPassword(props) {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
@@ -180,6 +180,7 @@ export default function ResetPassword(props) {
 
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle9})` }}
@@ -190,8 +191,8 @@ export default function ResetPassword(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Reset Password</h1>
-            <p>Explore your next great journey</p>
+            <h1>Đặt lại mật khẩu</h1>
+            <p>Kết nối với chúng tôi để có chuyến đi tốt hơn</p>
           </div>
         </div>
       </section>
@@ -213,31 +214,31 @@ export default function ResetPassword(props) {
               data-wow-delay="00ms"
               data-wow-duration="1500ms"
             >
-              <p>Reset Password</p>
-              <h2>Connect with us for Better Trip</h2>
+              <p>Đặt lại mật khẩu</p>
+              <h2>Kết nối với chúng tôi để có chuyến đi tốt hơn</h2>
             </div>
             <div className="form-inner">
               <h3>Đăng nhập với</h3>
               <ul className="social-links clearfix">
                 <li>
                   <Link to="/">
-                    <span>Login with Facebook _</span>
+                    <span>Đăng nhập với Facebook _</span>
                     <i className="fab fa-facebook-f" />
                   </Link>
                 </li>
                 <li>
                   <Link to="/">
-                    <span>Login with Google _</span>
+                    <span>Đăng nhập với Google _</span>
                     <i className="fab fa-google-plus-g" />
                   </Link>
                 </li>
               </ul>
               <div className="text">
-                <span>Or</span>
+                <span>Hoặc</span>
               </div>
               {resetForm}
               <div className="other-text">
-                Already have an account? <Link to="/login">Login</Link>
+                Bạn đã có tài khoản? <Link to="/login">Đăng Nhập</Link>
               </div>
             </div>
           </div>

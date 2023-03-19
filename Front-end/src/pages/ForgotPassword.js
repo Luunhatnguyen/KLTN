@@ -43,6 +43,7 @@ export default function ForgotPassword(props) {
 
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{ backgroundImage: `url(${pageTitle9})` }}
@@ -53,8 +54,9 @@ export default function ForgotPassword(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Forgot password</h1>
-            <p>Explore your next great journey</p>
+            <h1>Quên mật khẩu</h1>
+            <p>
+Kết nối với chúng tôi để có chuyến đi tốt hơn</p>
           </div>
         </div>
       </section>
@@ -76,21 +78,21 @@ export default function ForgotPassword(props) {
               data-wow-delay="00ms"
               data-wow-duration="1500ms"
             >
-              <p>Forgot password</p>
-              <h2>Connect with us for Better Trip</h2>
+              <p>Quên mật khẩu</p>
+              <h2>Kết nối với chúng tôi để có chuyến đi tốt hơn</h2>
             </div>
             <div className="form-inner">
               <h3>Đăng nhập với</h3>
               <ul className="social-links clearfix">
                 <li>
                   <Link to="/">
-                    <span>Login with Facebook _</span>
+                    <span>Đăng nhập với Facebook _</span>
                     <i className="fab fa-facebook-f" />
                   </Link>
                 </li>
                 <li>
                   <Link to="/">
-                    <span>Login with Google _</span>
+                    <span>Đăng nhập với Google _</span>
                     <i className="fab fa-google-plus-g" />
                   </Link>
                 </li>
@@ -111,7 +113,7 @@ export default function ForgotPassword(props) {
                   <div className="col-lg-12 col-md-12 col-sm-12 column">
                     <div className="form-group message-btn">
                       <button type="submit" className="theme-btn">
-                        Send
+                        Gửi
                       </button>
                     </div>
                   </div>
@@ -119,8 +121,8 @@ export default function ForgotPassword(props) {
                     <Box sx={{ display: "flex" }}>
                       {status === "success" ? (
                         <Typography>
-                          Please check your email ! If you haven't received it,
-                          press resend
+                          Vui lòng kiểm tra email của bạn ! Nếu bạn chưa nhận
+                          được nó, nhấn gửi lại
                         </Typography>
                       ) : (
                         <Fade
@@ -138,7 +140,7 @@ export default function ForgotPassword(props) {
                 </div>
               </form>
               <div className="other-text">
-                Already have an account? <Link to="/login">Login</Link>
+                Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link>
               </div>
             </div>
           </div>

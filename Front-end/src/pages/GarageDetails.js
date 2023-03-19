@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API, { endpoints } from "../configs/API";
-import { useSelector } from "react-redux";
 import cookies from "react-cookies";
 import { Link } from "react-router-dom";
 import { Avatar, Button } from "@mui/material";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import WOW from "wowjs";
 import Header from "../Layout/Header";
-
 import pageTitle6 from "../assets/img/Bus-Station-High-Quality-Wallpaper.jpg";
 import advice1 from "../image/advice/advice-1.jpg";
-import PreLoader from "../Components/PreLoader";
 import MessageSnackbar from "../Components/MessageSnackbar";
+import { UserContext } from "../App";
 
 function ArticalDetails(props) {
   const [bus, setBus] = useState([]);
@@ -28,7 +25,7 @@ function ArticalDetails(props) {
 
   const { busId } = useParams();
 
-  let user = useSelector((state) => state.user.user);
+  const [user, dispatch] = useContext(UserContext);
 
   // State of message
   const [open, setOpen] = useState(false);
@@ -172,8 +169,8 @@ function ArticalDetails(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Detail Garage</h1>
-            <p>Explore your next great journey</p>
+            <h1>Chi tiết Nhà xe</h1>
+            <p>Khám phá hành trình tuyệt vời tiếp theo của bạn</p>
           </div>
         </div>
       </section>
@@ -203,7 +200,7 @@ function ArticalDetails(props) {
                     </div>
                   </div>
                 </div>
-                <h2>Tại sao lại đặt xe khách tại NhaXe?</h2>
+                <h2>Tại sao lại đặt xe khách tại Bus Station?</h2>
                 <div className="text">
                   <p>
                     Nội thất sang trọng bậc nhất, chỗ ngồi thỏa mái, đầy đủ tiện

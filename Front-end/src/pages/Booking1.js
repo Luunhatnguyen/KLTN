@@ -1,5 +1,5 @@
 import { FormControl, MenuItem, Select } from "@mui/material";
-import React, { useContext,useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API, { endpoints } from "../configs/API";
 import { v4 as uuidv4 } from "uuid";
@@ -54,7 +54,12 @@ export default function Booking1(props) {
     setTitleMsg(title);
     setTypeMsg(type);
   };
-
+  const goToTop = () => {
+    window.scrollTo({
+      top: 165,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       {/* <section
@@ -80,25 +85,25 @@ export default function Booking1(props) {
               <div className="booking-process-content mr-20">
                 <ul className="process-label clearfix">
                   <li className="current">
-                    <span>1.</span>Customer information
+                    <span>1.</span>THÔNG TIN HÀNH KHÁCH
                   </li>
                   <li>
-                    <span>2.</span>Payment
+                    <span>2.</span>THANH TOÁN
                   </li>
                   <li>
-                    <span>3.</span>Confirm
+                    <span>3.</span>XÁC NHẬN
                   </li>
                 </ul>
                 <div className="inner-box">
-                  <h3>Contact Info</h3>
+                  <h3 style={{ color: "#f15a24" }}>Thông tin hành khách</h3>
                   <form className="processing-form">
                     <div className="row clearfix">
                       <div
                         className="col-lg-6 col-md-6 col-sm-12 column"
-                        style={{ marginTop: "-30px" }}
+                        style={{ marginTop: "-15px" }}
                       >
                         <div className="form-group">
-                          <label>First And Last Name</label>
+                          <label>Họ tên hành khách *</label>
                           <input
                             id="room"
                             type="text"
@@ -114,7 +119,7 @@ export default function Booking1(props) {
                         style={{ marginTop: "-30px" }}
                       >
                         <div className="form-group">
-                          <label>Phone</label>
+                          <label>Số điện thoại *</label>
                           <input
                             id="room"
                             type="text"
@@ -129,7 +134,7 @@ export default function Booking1(props) {
                         style={{ marginTop: "-30px" }}
                       >
                         <div className="form-group">
-                          <label>Email</label>
+                          <label>Email *</label>
                           <input
                             id="children"
                             type="text"
@@ -148,29 +153,40 @@ export default function Booking1(props) {
         </div>
         <div className="notes-container" style={{ marginTop: "-45px" }}>
           <div>
-            <p className="info-header">TERMS &amp; NOTES</p>
-            <p className="txt">
-              (*) Please bring the email containing the ticket code to the
-              office to change your ticket to the bus at least before departure
-              time
-              <span className="high-light">60 minute</span>
-              for us to transfer..
+            <p
+              className="info-header"
+              style={{ marginTop: "5%", color: "#f15a24" }}
+            >
+              ĐIỀU KHOẢN &amp; LƯU Ý
             </p>
             <p className="txt">
-              (*) Passenger information must be correct, otherwise it will not
-              be possible to board the bus or cancel/change tickets.
+              (*) Quý khách vui lòng mang email có chứa mã vé đến văn phòng để
+              đổi vé lên xe trước giờ xuất bến ít nhất
+              <span className="high-light" style={{ color: "#f15a24" }}>
+                {" "}
+                60 phút{" "}
+              </span>
+              để chúng tôi trung chuyển.
             </p>
             <p className="txt">
-              (*) Customers cannot change/return tickets on New Year's Day (day
-              Usually you can change your rights or cancel your ticket
-              <span className="high-light">một lần</span>
-              only 24 hours before the bus runs), 10% cancellation fee.
+              (*) Thông tin hành khách phải chính xác, nếu không sẽ không thể
+              lên xe hoặc hủy/đổi vé.
             </p>
             <p className="txt">
-              (*) If you have transit needs, please contact phone
-              <span> 1900 6067 </span>
-              before booking. We do not pick up/transfer at these locations The
-              shuttle cannot be reached.
+              (*) Quý khách không được đổi/trả vé vào các ngày Lễ Tết (ngày
+              thường quý khách được quyền chuyển đổi hoặc hủy vé
+              <span className="high-light" style={{ color: "#f15a24" }}>
+                {" "}
+                một lần{" "}
+              </span>
+              duy nhất trước giờ xe chạy 24 giờ), phí hủy vé 10%.
+            </p>
+            <p className="txt">
+              (*) Nếu quý khách có nhu cầu trung chuyển, vui lòng liên hệ số
+              điện thoại
+              <span style={{ color: "#f15a24" }}> 035 4444 899 </span>
+              trước khi đặt vé. Chúng tôi không đón/trung chuyển tại những điểm
+              xe trung chuyển không thể tới được.
             </p>
           </div>
         </div>
@@ -178,7 +194,7 @@ export default function Booking1(props) {
           <Form.Check
             className="info-check"
             type="checkbox"
-            label="Accept the terms and book the ticket"
+            label="Chấp nhận điều khoản đặt vé của Bus Station"
             onClick={() => setAccept(!accept)}
           />
         </div>
@@ -190,10 +206,11 @@ export default function Booking1(props) {
               onClick={() => {
                 props.step(-1);
                 props.clearSeat();
+                goToTop();
               }}
             >
               <i className="fas fa-angle-left" />
-              Back
+              Quay lại
             </button>
           </div>
           {accept === true && name !== "" && number !== "" && email !== "" ? (
@@ -202,10 +219,11 @@ export default function Booking1(props) {
               onClick={() => {
                 props.step(1);
                 userInfo();
+                goToTop();
               }}
             >
               <button className="theme-btn confirm">
-                Continue
+                Tiếp tục
                 <i className="fas fa-angle-right" />
               </button>
             </div>

@@ -61,8 +61,8 @@ function MoMoReturn() {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>MoMo Payment</h1>
-            <p>Explore your next great journey</p>
+            <h1>Thanh toán ví MoMo</h1>
+            <p>Khám phá hành trình tuyệt vời tiếp theo của bạny</p>
           </div>
         </div>
       </section>

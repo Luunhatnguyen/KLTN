@@ -168,6 +168,12 @@ function Booking2(props) {
     }
   };
   const [visible, setVisible] = useState(0);
+  const goToTop = () => {
+    window.scrollTo({
+      top: 165,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       {/* <section
@@ -196,13 +202,13 @@ function Booking2(props) {
               <div className="booking-process-content mr-20">
                 <ul className="process-label clearfix">
                   <li>
-                    <span>1.</span>Customer information
+                    <span>1.</span>THÔNG TIN HÀNH KHÁCH
                   </li>
                   <li className="current">
-                    <span>2.</span>Payment
+                    <span>2.</span>THANH TOÁN
                   </li>
                   <li>
-                    <span>3.</span>Confirm
+                    <span>3.</span>XÁC NHẬN
                   </li>
                 </ul>
                 <div className="inner-box">
@@ -220,7 +226,7 @@ function Booking2(props) {
                             style={{ marginTop: "-20px" }}
                           >
                             <div className="form-group">
-                              <label>Bus route</label>
+                              <label>Thông tin chuyến</label>
                               <label class="form-control">
                                 {props.station.stationFrom} ⇒{" "}
                                 {props.station.stationTo}
@@ -233,7 +239,7 @@ function Booking2(props) {
                             style={{ marginTop: "-20px" }}
                           >
                             <div className="form-group">
-                              <label>Number of seats</label>
+                              <label>Số lượng ghế</label>
                               <label class="form-control">
                                 {" "}
                                 {props.seat.length}
@@ -245,7 +251,7 @@ function Booking2(props) {
                             style={{ marginTop: "-20px" }}
                           >
                             <div className="form-group">
-                              <label>Time</label>
+                              <label>Thời gian:</label>
                               <label class="form-control">
                                 {timeTable.time} ngày{" "}
                                 <Moment format="DD/MM/YYYY">
@@ -259,7 +265,7 @@ function Booking2(props) {
                             style={{ marginTop: "-20px" }}
                           >
                             <div className="form-group">
-                              <label>Seats</label>
+                              <label>Số ghế:</label>
                               <label class="form-control">
                                 {nameSeat.map((c) => c.location + ", ")}
                               </label>
@@ -270,7 +276,7 @@ function Booking2(props) {
                             style={{ marginTop: "-20px" }}
                           >
                             <div className="form-group">
-                              <label>Boarding point</label>
+                              <label>Điểm lên xe:</label>
                               <label class="form-control">
                                 {nameGara.name}
                               </label>
@@ -281,8 +287,11 @@ function Booking2(props) {
                             style={{ marginTop: "-20px" }}
                           >
                             <div className="form-group">
-                              <label>Total</label>
-                              <label class="form-control">
+                              <label>TỔNG TIỀN</label>
+                              <label
+                                class="form-control"
+                                style={{ color: "#f15a24" }}
+                              >
                                 {formatPrice(props.total)}
                                 <sup>₫</sup>
                               </label>
@@ -293,7 +302,17 @@ function Booking2(props) {
                     </div>
                   </div>
                   <div className="payment-option">
-                    <h3>Select Payment Method</h3>
+                    <h4
+                      style={{
+                        color: "#00613d",
+                        textAlign: "center",
+                        fontSize: "20px",
+                        fontWeight: "700",
+                        marginTop: "25px",
+                      }}
+                    >
+                      CHỌN CÁCH THANH TOÁN
+                    </h4>
                     <div className="row clearfix">
                       <div className="col-lg-6 col-md-6 col-sm-12 column">
                         <FormControl component="fieldset">
@@ -307,7 +326,7 @@ function Booking2(props) {
                               value="2"
                               onClick={() => setVisible(1)}
                               control={<Radio />}
-                              label="Cash payment at the counter"
+                              label="Trả tiền mặt tại quầy thanh toán"
                             />
                             <FormControlLabel
                               value="1"
@@ -315,7 +334,7 @@ function Booking2(props) {
                               control={<Radio />}
                               label={
                                 <>
-                                  Payment by Wallet{" "}
+                                  Ví {" "}
                                   <img
                                     style={{ width: "30px" }}
                                     src="https://developers.momo.vn/v2/images/logo.svg"
@@ -324,16 +343,16 @@ function Booking2(props) {
                                 </>
                               }
                             />
-                            <FormControlLabel
+                            {/* <FormControlLabel
                               value="3"
                               control={<Radio />}
                               label={
                                 <>
-                                  Payment by Wallet{" "}
+                                  Ví {" "}
                                   <img src={logoZaloPay} alt="" />
                                 </>
                               }
-                            />
+                            /> */}
                           </RadioGroup>
                         </FormControl>
                       </div>
@@ -378,28 +397,31 @@ function Booking2(props) {
                             className="theme-btn"
                             onClick={() => {
                               props.step(-1);
+                              goToTop();
                             }}
                           >
                             <i className="fas fa-angle-left" />
-                            Back
+                            Quay lại
                           </button>
                           {visible === 1 && (
                             <button
                               type="submit"
-                              className="theme-btn confirm"
+                              className="theme-btn1 confirm"
                               onClick={() => pay("offline")}
+                              style={{  background: '#00613d !important'}}
                             >
-                              Confirm
+                              Thanh toán
                               <i className="fas fa-angle-right" />
                             </button>
                           )}
                           {visible === 2 && (
-                            <button
+                            <button 
                               type="submit"
-                              className="theme-btn confirm"
+                              className="theme-btn1 confirm"
                               onClick={() => pay("momo")}
+                              style={{  background: "#00613d !important"}}
                             >
-                              Confirm MOMO
+                              Ví Momo
                               <i className="fas fa-angle-right" />
                             </button>
                           )}

@@ -12,6 +12,7 @@ export default function Contact() {
   };
   return (
     <>
+      <Header />
       <section
         className="page-title centred"
         style={{
@@ -20,8 +21,8 @@ export default function Contact() {
       >
         <div className="auto-container">
           <div className="content-box">
-            <h1>Contact</h1>
-            <p>Explore your next great journey</p>
+            <h1>Liên hệ</h1>
+            <p>Khám phá hành trình của bạn</p>
           </div>
         </div>
       </section>
@@ -66,7 +67,7 @@ function ContactInfoSection() {
                 <div className="icon-box">
                   <i className="fas fa-map-marker-alt" />
                 </div>
-                <h3>Address</h3>
+                <h3>Địa chỉ</h3>
                 <p>371, Nguyen Kiem Street, Go Vap District</p>
               </div>
             </div>
@@ -81,7 +82,7 @@ function ContactInfoSection() {
                 <div className="icon-box">
                   <i className="fas fa-phone-alt" />
                 </div>
-                <h3>Phone</h3>
+                <h3>Số điện thoại</h3>
                 <p>
                   <a href="tel:0767642448">0767642448</a>
                   <br />
@@ -128,12 +129,12 @@ function ContactSection() {
             <div className="content_block_5">
               <div className="content-box">
                 <div className="sec-title">
-                  <p>Contact</p>
-                  <h2>Please feel free to contact us</h2>
+                  <p>Liên hệ</p>
+                  <h2>Xin cứ thoải mái liên lạc với chúng tôi</h2>
                 </div>
                 <div className="text">
                   <p>
-                    Address: 240D Hà Huy Giáp, Phường Thạnh Lộc, Quận 12, TP.HCM
+                    Địa chỉ: 240D Hà Huy Giáp, Phường Thạnh Lộc, Quận 12, TP.HCM
                   </p>
                 </div>
                 <ul className="social-links clearfix">
@@ -210,7 +211,7 @@ function ContactSection() {
                       type="submit"
                       name="submit-form"
                     >
-                      Confirm now
+                      Xác Nhận
                     </button>
                   </div>
                 </div>
