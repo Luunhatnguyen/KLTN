@@ -22,8 +22,7 @@ import ChangePassword from "./pages/ChangePassword";
 import LoginCarrier from "./pages/LoginCarrier";
 import AdminCarrier from "./pages/AdminCarrier";
 import AddArtical from "./pages/AddGarage";
-import UpdateArtical from "./pages/UpdateGarage";
-import TourDelete from "./pages/TripDelete";
+import TourDelete from "./pages/ManageBus";
 import Booking3 from "./pages/Booking3";
 import MomoReturn from "./pages/MoMoReturn";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -32,6 +31,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Routed from "./pages/Route";
 import Bill from "./pages/Bill";
+import ManageBusDetail from "./pages/ManageBusDetail";
 export const UserContext = createContext();
 
 function App() {
@@ -81,12 +81,9 @@ function App() {
           />
           <Route path="/loginCarrier" element={<LoginCarrier />} />
           <Route path="/carrier" element={<AdminCarrier />} />
-          <Route path="/addArtical" element={<AddArtical />} />
-          <Route
-            path="/articals/:articalId/update"
-            element={<UpdateArtical />}
-          />
-          <Route path="/deleteTour" element={<TourDelete />} />
+          <Route path="/addTrip" element={<AddArtical />} />
+          <Route path="/manageBus" element={<TourDelete />} />
+          <Route path="/manageBusDetail/:garagesId/" element={<ManageBusDetail />} />
           <Route path="/MomoReturn" element={<MomoReturn />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />

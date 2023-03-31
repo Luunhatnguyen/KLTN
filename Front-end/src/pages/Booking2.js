@@ -87,7 +87,7 @@ function Booking2(props) {
     const email = props.userInfo.email;
     const phone = props.userInfo.number;
     const timeTable = props.timeTableID;
-
+    
     const amount = props.total;
     if (window.confirm("Bạn có chắc muốn thanh toán không?") == true) {
       let booking = await API.post(endpoints["booking"], {
@@ -147,7 +147,7 @@ function Booking2(props) {
             timeTable: timeTable1.time + timeTable1.date,
             NumOfSeat: props.seat.length,
             Seat: nameSeat.map((c) => c.location + ", "),
-            BoardingPoint: nameGara.name,
+            BoardingPoint: nameGara.address,
             Total: props.total,
             email: email,
           }
@@ -278,7 +278,7 @@ function Booking2(props) {
                             <div className="form-group">
                               <label>Điểm lên xe:</label>
                               <label class="form-control">
-                                {nameGara.name}
+                                {nameGara.address}
                               </label>
                             </div>
                           </div>

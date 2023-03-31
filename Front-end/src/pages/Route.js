@@ -84,6 +84,7 @@ function Router() {
       }
 
       let res = await Api.get(endpoints["time-table"]);
+      console.log(res.data);
       setListRouteDetail(res.data);
 
       let typeBus = await Api.get(endpoints["type-bus"]);
@@ -197,7 +198,7 @@ function Router() {
       (c) => c.busRouteID.routeID.city_from.name == fromGarage
     );
     const elementToGarage = elementFromGarage.filter(
-      (c) => c.busRouteID.routeID.to_garage.cityID.name == toGarage
+      (c) => c.busRouteID.routeID.to_garage.name == toGarage
     );
     if (sDate === undefined) {
       element = elementToGarage;

@@ -55,7 +55,7 @@ const Header = (props) => {
       </li>
       <li className="dropdown">
         <NavLink activeClassName="is-current" to="/garage">
-          Nhà Xe
+          Hãng Xe
         </NavLink>
       </li>
       <li className="dropdown">
@@ -68,7 +68,7 @@ const Header = (props) => {
           Liên Hệ
         </NavLink>
       </li>
-       <li className="dropdown">
+      <li className="dropdown">
         <NavLink activeClassName="is-current" to="/bill">
           Hóa Đơn
         </NavLink>
@@ -189,7 +189,7 @@ const Header = (props) => {
   };
 
   if (user != null) {
-    console.log(user);
+    // console.log(user);
     replaceRightPart = (
       <>
         <div href="#" className="login-right-header">
@@ -353,6 +353,92 @@ const Header = (props) => {
           </div>
         </div> */}
       </header>
+
+      <div className="mobile-menu">
+        <div
+          className="menu-backdrop"
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        ></div>
+
+        <div
+          className="nav__mobile-close close-btn"
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          <i className="fas fa-times" />
+        </div>
+
+        <nav className="menu-box">
+          <div className="nav-logo">
+            <Link to="/">
+              <img src={travellogo} alt="ImageLogo" />
+            </Link>
+          </div>
+          <div className="menu-outer">
+            <div
+              className="collapse navbar-collapse show clearfix"
+              id="navbarSupportedContent"
+            >
+              <ul className="navigation clearfix">
+                {menuHeader}
+                <li className="dropdown">
+                  <NavLink activeClassName="is-current" to="/login">
+                  Đăng Nhập
+                  </NavLink>
+                </li>
+                {mobileMenuAccount}
+              </ul>
+            </div>
+          </div>
+
+          <div className="contact-info">
+            <h4>Thông tin liên lạc</h4>
+            <ul>
+              <li>242 Hà Huy Giáp, Quận 12, Hồ Chí Minh</li>
+              <li>
+                <Link to="tel:+0354444899">0354444899</Link>
+              </li>
+              <li>
+                <Link to="mailto:nhatnguyen.01102001@gmail.com">
+                  nhatnguyen.01102001@gmail.com
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="social-links">
+            <ul className="clearfix">
+              <li>
+                <Link to="/">
+                  <span className="fab fa-twitter"></span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span className="fab fa-facebook-square"></span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span className="fab fa-pinterest-p"></span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span className="fab fa-instagram"></span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span className="fab fa-youtube"></span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </>
   );
 };

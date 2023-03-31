@@ -248,6 +248,7 @@ function Item(props) {
 
               <img
                 src={select}
+                className="img-click"
                 style={{
                   width: "25px",
                   height: "30px",
@@ -271,6 +272,7 @@ function Item(props) {
               <h2 style={{ minWidth: "200px" }}>Đặt vé, đánh giá </h2>
               <img
                 src={select1}
+                className="img-click"
                 style={{
                   width: "25px",
                   height: "30px",
@@ -484,7 +486,7 @@ function Item(props) {
                   >
                     <option value="undefined">Chọn điểm lên xe</option>
                     {timeTable.map((c) => {
-                      return <option value={c.id}>{c.name}</option>;
+                      return <option value={c.id}>{c.address}</option>;
                     })}
                   </Form.Select>
                 </Form.Group>

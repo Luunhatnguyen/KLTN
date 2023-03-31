@@ -99,17 +99,17 @@ export default function Admin() {
     <>
       <li className="dropdown">
         <NavLink activeClassName="is-current" to="/carrier" exact={true}>
-          Trang Carrier
+          Trang Nhà Xe
         </NavLink>
       </li>
       <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/deleteTour">
-          Quản Lý Chuyến Đi
-        </NavLink>
-      </li>
-      <li className="dropdown">
-        <NavLink activeClassName="is-current" to="/addArtical">
+        <NavLink activeClassName="is-current" to="/manageBus">
           Quản Lý Nhà Xe
+        </NavLink>
+      </li>
+      <li className="dropdown">
+        <NavLink activeClassName="is-current" to="/addTrip">
+          Thêm chuyến đi
         </NavLink>
       </li>
     </>
@@ -228,42 +228,33 @@ export default function Admin() {
   };
 
   if (user !== null && user != undefined) {
-    if (user.isCarrier == true) {
-      console.log(user);
-      replaceRightPart = (
-        <>
-          <div href="#" className="login-right-header">
-            {user.username}
+    replaceRightPart = (
+      <>
+        <div href="#" className="login-right-header">
+          {user.username}
+        </div>
+        <div className="signout-right-header">
+          <div className="user-Header-avatarContainer" onClick={ToggleClass}>
+            <img
+              src={user.avatar_path}
+              alt="avatar-user"
+              className="user-Header-avatar"
+            />
           </div>
-          <div className="signout-right-header">
-            <div className="user-Header-avatarContainer" onClick={ToggleClass}>
-              <img
-                src={user.avatar_path}
-                alt="avatar-user"
-                className="user-Header-avatar"
-              />
-            </div>
-            <div
-              className={
-                isPopUp ? "user-popup-header" : "user-popup-header showPopup"
-              }
-            >
-              <a
-                href="#"
-                className="user-popup-header--logout"
-                onClick={logout}
-              >
-                Đăng Xuất
-              </a>
-            </div>
+          <div
+            className={
+              isPopUp ? "user-popup-header" : "user-popup-header showPopup"
+            }
+          >
+            <a href="#" className="user-popup-header--logout" onClick={logout}>
+              Đăng Xuất
+            </a>
           </div>
-        </>
-      );
-    } else {
-      console.info("Ban ko phai admin");
-    }
+        </div>
+      </>
+    );
   } else {
-    console.info("Ban ko dung ten dn");
+    // console.info("Bạn đăng nhập thành công");
   }
 
   return (
@@ -372,35 +363,6 @@ export default function Admin() {
             </ul>
           </div>
         </div>
-
-        {/* narbar translate  */}
-
-        {/* <div className="sticky-header">
-          <div className="auto-container">
-            <div className="outer-box">
-              <div className="logo-box">
-                <figure className="logo">
-                  <Link to="/">
-                    <img src={travellogo} alt="ImageLogo" />
-                  </Link>
-                </figure>
-              </div>
-              <div className="menu-area">
-                <nav className="main-menu clearfix">
-                  <div
-                    className="collapse navbar-collapse show clearfix"
-                    id="navbarSupportedContent"
-                  >
-                    <ul className="navigation clearfix">{menuHeader}</ul>
-                  </div>
-                </nav>
-              </div>
-              <ul className="menu-right-content clearfix">
-                <li className="search-box-outer">{btMenuAccount}</li>
-              </ul>
-            </div>
-          </div>
-        </div> */}
       </header>
       <IndexHeader />
     </>

@@ -218,17 +218,31 @@ export default function Register(props) {
                     value={email}
                     change={(event) => setEmail(event.target.value)}
                   />
-                  <RegisterForm
+                  <div className=" col-lg-12 col-md-12 col-sm-12 column">
+                    <div className="form-group">
+                      <label>Số điện thoại</label>
+                      <input
+                        type="tel"
+                        placeholder="123-456-6789"
+                        className="form-control "
+                        style={{height:"60px"}}
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                        name="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  {/* <RegisterForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
                     id="phone"
                     label="Phone"
-                    type="text"
+                    type="tel"
                     value={phone}
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     required
-                    plac
                     change={(event) => setPhone(event.target.value)}
-                  />
+                  /> */}
                   <RegisterForm
                     class="col-lg-12 col-md-12 col-sm-12 column"
                     id="username"

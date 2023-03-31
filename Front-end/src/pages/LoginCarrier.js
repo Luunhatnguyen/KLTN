@@ -51,8 +51,6 @@ function LoginAdmin() {
           Authorization: `Bearer ${cookies.load("access_token")}`,
         },
       });
-
-      console.info(user);
       cookies.save("user", user.data);
 
       //permission
@@ -61,7 +59,7 @@ function LoginAdmin() {
         password: password,
         isCarrier: user.data.isCarrier,
       });
-      console.info(permission);
+      // console.info(permission);
 
       dispatch({
         type: "login",
@@ -136,6 +134,7 @@ function LoginAdmin() {
                     <Form.Label>Tên tài khoản</Form.Label>
                     <Form.Control
                       type="text"
+                      style={{ height: "60px" }}
                       placeholder="Username"
                       value={username}
                       onChange={(event) => setUsername(event.target.value)}
@@ -145,6 +144,7 @@ function LoginAdmin() {
                   <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Mật khẩu</Form.Label>
                     <Form.Control
+                      style={{ height: "60px" }}
                       type="password"
                       placeholder="Password"
                       value={password}

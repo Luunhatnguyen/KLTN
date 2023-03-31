@@ -1,123 +1,52 @@
-import React, { useEffect, useState } from "react";
-import API, { endpoints } from "../configs/API";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import WOW from "wowjs";
+import React, { useEffect, useState, useContext } from "react";
+import Api, { endpoints } from "../configs/API";
+import { Col, Form, Row } from "react-bootstrap";
+import * as ImCon from "react-icons/im";
 import { makeStyles } from "@mui/styles";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import pageTitle6 from "../assets/img/Bus-Station-High-Quality-Wallpaper.jpg";
-import advice1 from "../image/advice/advice-1.jpg";
 import Header from "../Layout/Header";
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
-
-const useStyles = makeStyles((theme) => ({
-  ul: {
-    "& .css-ax94ij-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
-      backgroundColor: "#ff7c5b",
-    },
-    "& .Mui-selected": {
-      color: "#fff",
-    },
-  },
-}));
+import { UserContext } from "../App";
+import { FaMoneyBillWaveAlt, FaBus } from "react-icons/fa";
+import NumberFormat from "react-number-format";
 
 function Bill(props) {
-  const classes = useStyles();
-  let location = useLocation();
-  const navigate = useNavigate();
+  const [bill, setBill] = useState([]);
+  const [user, dispatch] = useContext(UserContext);
 
-  const [count, setCount] = useState(-1);
-  const [listArtical, setListArtical] = useState([]);
-  const [lastestArticals, setLastestArticals] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [page, setPage] = useState(1);
+  const [cName, setcName] = useState("wrapper list");
+  if (user != null) {
+    useEffect(() => {
+      let loadBill = async () => {
+        let res = await Api.get(endpoints["booking-history-by-user"](user.id));
+        setBill(res.data);
+        // console.log(res.data);
+      };
 
-  /* Radio Search */
-  const colorRadio = {
-    color: "black",
-    "&.Mui-checked": {
-      color: "#ff7c5b",
-    },
-  };
+      loadBill();
+    }, []);
+  }
+  let routes = <></>;
 
-  const [rate, setRate] = useState("");
-  const handleRateChange = (event) => {
-    setRate(event.target.value);
-    navigate(`/garage/?rate=${event.target.value}`);
-  };
-
-  useEffect(() => {
-    new WOW.WOW({ live: false }).init();
-  }, []);
-
-  useEffect(() => {
-    let loadArticals = async () => {
-      let query = location.search;
-      if (query === "") query = `?page=${page}`;
-      else query += `&page=${page}`;
-
-      try {
-        let res = await API.get(`${endpoints["buss"]}${query}`);
-        console.log(res.data);
-
-        setListArtical(res.data.results);
-        setCount(res.data.count);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    loadArticals();
-  }, [location.search, page]);
-
-  const searchArtical = (event, search = `?q=${searchTerm}`) => {
-    event.preventDefault();
-    navigate(`/garage/?q=${searchTerm}`);
-  };
-
-  let buss = <></>;
-  let results = <></>;
-
-  if (listArtical.length !== 0) {
-    buss = (
+  //  CHÚ Ý LỌC CÓ HAY KHÔNG
+  if (user != null) {
+    routes = (
       <>
-        {listArtical.map((b) => (
-          <ArticalItem key={b.id} bus={b} />
-        ))}
+        <div className="tour-list-content list-item">
+          {bill.map((t) => (
+            <ArticalItem key={t.id} bill={t} />
+          ))}
+        </div>
+      </>
+    );
+  } else {
+    routes = (
+      <>
+        <div className="tour-list-content list-item">
+          <h1>Quý khách vui lòng đăng nhập để xem hóa đơn thanh toán</h1>
+        </div>
       </>
     );
   }
-
-  // Pagination
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
-
-  let pages = (
-    <>
-      <Stack spacing={2}>
-        <Pagination
-          classes={{ ul: classes.ul }}
-          variant="outlined"
-          size="large"
-          count={Math.ceil(count / 5)}
-          onChange={handlePageChange}
-        />
-      </Stack>
-    </>
-  );
-
-  // if (listArtical.length === 0 && count === -1) {
-  //     return <PreLoader />
-  // }
-
   return (
     <>
       <Header />
@@ -135,9 +64,18 @@ function Bill(props) {
             <p>Hóa đơn của quý khách</p>
           </div>
         </div>
-      </section>
 
-     
+        <div></div>
+      </section>
+      <section className="tours-page-section">
+        <div className="auto-container">
+          <div className="row clearfix">
+            <div className="col-lg-12 col-md-12 col-sm-12 content-side">
+              <div className={cName}>{routes}</div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
@@ -145,14 +83,85 @@ function Bill(props) {
 export default Bill;
 
 function ArticalItem(props) {
-  const componentDidMount = () => {
-    new WOW.WOW({
-      live: false,
-    }).init();
-  };
   return (
-    <>
+    <div
+      className="tour-block-two wow fadeInUp animated animated"
+      data-wow-delay="00ms"
+      data-wow-duration="1500ms"
+    >
+      <div className="inner-box">
+        <figure className="image-box">
+          <img
+            style={{ width: "190px", height: "227px" }}
+            src={props.bill.timeTable.busRouteID.routeID.image}
+            alt="ImageTrip"
+          />
 
-    </>
+          {/* <Link to={`/route-detail/${props.id}`}>
+            <i className="fas fa-link" />
+          </Link> */}
+        </figure>
+        <div className="content-box">
+          <h3>
+            <p>
+              {props.bill.timeTable.busRouteID.routeID.city_from.name} -
+              {props.bill.timeTable.busRouteID.routeID.to_garage.name}
+            </p>
+          </h3>
+
+          <Row>
+            <Col xs={4} style={{ display: "inline-flex" }}>
+              <FaMoneyBillWaveAlt />
+              <p style={{ marginTop: "-3px", marginLeft: "5px" }}>
+                <NumberFormat
+                  value={props.bill.timeTable.busRouteID.price}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"Giá: "}
+                />
+                <span> đ </span>
+              </p>
+            </Col>
+            <Col xs={4} style={{ display: "inline-flex" }}>
+              <ImCon.ImClock />
+              <p style={{ marginTop: "-3px", marginLeft: "5px" }}>
+                Giờ: {props.bill.timeTable.time}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={4} style={{ display: "inline-flex" }}>
+              <ImCon.ImLocation />
+              <p style={{ marginTop: "-3px", marginLeft: "5px" }}>
+                Điểm lên xe: {props.bill.timeTable.busRouteID.routeID.point}
+              </p>
+            </Col>
+            <Col xs={4} style={{ display: "inline-flex" }}>
+              <ImCon.ImClock />
+              <p style={{ marginTop: "-3px", marginLeft: "5px" }}>
+                Ngày khởi hành: {props.bill.timeTable.date}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={4} style={{ display: "inline-flex" }}>
+              <FaBus />
+              <p style={{ marginTop: "-3px", marginLeft: "5px" }}>
+                Loại xe: {props.bill.timeTable.busRouteID.busID.typeBusID.name}
+              </p>
+            </Col>
+            {/* <Col xs={4} style={{ display: "inline-flex" }}>
+              <ImCon.ImClock />
+              <p style={{ marginTop: "-3px", marginLeft: "5px" }}>
+                Ngày khởi hành: {props.bill.timeTable.date}
+              </p>
+            </Col> */}
+          </Row>
+          <div className="btn-box">
+            {/* <Link to={`/route-detail/${props.id}`}>Chi Tiết</Link> */}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

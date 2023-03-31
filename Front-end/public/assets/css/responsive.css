@@ -812,11 +812,61 @@
     }
     .tours-page-section .item-shorting .right-column .short-box {
         margin-bottom: 10px;
+        margin-left: 27px;
     }
     .tours-page-section .item-shorting .right-column .menu-box {
         max-width: 110px;
         margin: 0 auto;
         float: none;
+        margin-left: 25px;
+        margin-bottom: 10px;
+    }
+    .seatStatus-free {
+        border: 2px solid blue ;
+        color: blue;
+        cursor: pointer;
+        width: 70% !important;
+        height: 75% !important;
+        margin: -5% 0% 23% 25% !important;
+        text-align: center;
+        padding-top: 3px;
+    }
+    .seatStatus-pass {
+        border: 2px solid gray;
+        color: gray;
+        cursor: not-allowed;
+        width: 70% !important;
+        height: 75% !important;
+        margin: -5% 0% 23% 25% !important; 
+        text-align: center;
+        padding-top: 3px;
+    }
+    .notes-container{
+        margin-top: -10px !important;
+    }
+    .confirm {
+        margin-left: 0px !important;
+    }
+    .h3-garage{
+        margin-top: -65px !important;
+          font-size: 26px;
+          line-height: 50px;
+          font-weight: 600;
+    }
+    .seatStatus-selected{
+        border: 2px solid #ff7c5b;
+        color: #ff7c5b;
+        cursor: pointer;
+        width: 70% !important;
+        height: 75% !important;
+        margin: -5% 0% 23% 25% !important; 
+        text-align: center;
+        padding-top: 3px;
+      }
+    .img-click{
+        height: 27px;
+        margin-top: 5px;
+        max-width: 500%;
     }
     .tour-details-content .tour-plan .single-box {
         padding-left: 100px;

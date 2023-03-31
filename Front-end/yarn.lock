@@ -10853,6 +10853,11 @@
     "cookie" "^0.3.1"
     "object-assign" "^4.1.1"
 
+"react-currency-input-field@^3.6.10":
+  "integrity" "sha512-KRAJJaLujarBTLlEVbznsUxQ56+Qyqwoe5w9DnGxmsGnHv4ycQRpRkuuCDfF9BcXHmegzsOXesfIGpW7Cw9mTQ=="
+  "resolved" "https://registry.npmjs.org/react-currency-input-field/-/react-currency-input-field-3.6.10.tgz"
+  "version" "3.6.10"
+
 "react-datetime@^3.2.0":
   "integrity" "sha512-w5XdeNIGzBht9CadaZIJhKUhEcDTgH0XokKxGPCxeeJRYL7B3HIKA8CM6Q0xej2JFJt0n5d+zi3maMwaY3262A=="
   "resolved" "https://registry.npmjs.org/react-datetime/-/react-datetime-3.2.0.tgz"
@@ -11089,6 +11094,11 @@
     "memoize-one" "^5.0.0"
     "prop-types" "^15.6.0"
     "react-transition-group" "^4.3.0"
+
+"react-time@^4.3.0":
+  "integrity" "sha512-KW4IROr+EMHbAscVi6bIgPZGbgsTp66CZXdFnrkneIOQYG4XHdv4iWA7LPQcqNvVOTMpBEwg+DaQiKPIU9DuHg=="
+  "resolved" "https://registry.npmjs.org/react-time/-/react-time-4.3.0.tgz"
+  "version" "4.3.0"
 
 "react-transition-group@^4.3.0", "react-transition-group@^4.4.2":
   "integrity" "sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg=="

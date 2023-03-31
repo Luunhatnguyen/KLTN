@@ -62,7 +62,7 @@ export default function Login() {
         cookies.save("access_token", res.data.access_token);
         const user = await authApi().get(endpoints["current_user"]);
         cookies.save("current_user", user.data);
-        console.log(user.data);
+        // console.log(user.data);
         dispatch({
           type: "login",
           payload: user.data,
@@ -95,7 +95,7 @@ export default function Login() {
       cookies.save("access_token", googleAccess.data.tokens.access);
       const user = await authApi().get(endpoints["current_user"]);
       cookies.save("current_user", user.data);
-      console.log(user.data);
+      // console.log(user.data);
       dispatch({
         type: "login",
         payload: user.data,
@@ -116,7 +116,7 @@ export default function Login() {
       cookies.save("access_token", facebookAccess.data.tokens.access);
       const user = await authApi().get(endpoints["current_user"]);
       cookies.save("current_user", user.data);
-      console.log(user.data);
+      // console.log(user.data);
       dispatch({
         type: "login",
         payload: user.data,

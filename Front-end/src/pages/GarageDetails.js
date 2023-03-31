@@ -187,7 +187,7 @@ function ArticalDetails(props) {
                         <Link to="/">
                           <span className="post-date">
                             <i className="fas fa-bus-alt" />
-                            {bus.busModel}
+                            {/* {bus.busModel} */}
                           </span>
                         </Link>
                       </div>

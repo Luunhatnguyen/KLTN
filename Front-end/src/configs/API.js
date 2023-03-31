@@ -36,6 +36,10 @@ export let endpoints = {
     `/timetables/${timetableID}/bookingdetails/`,
   bookingdetails: "/bookingdetails/",
   "last-booking": "/bookings/last-book/",
+  "booking-history-by-user": (userId) =>
+    `/bookings/${userId}/booking-history-by-user/`,
+  "get_bus_by_carrier": (userId) => `/buscarrier/${userId}/get_bus_by_carrier/`,
+  "get_route_by_bus": (garagesId) =>`/busroutes/${garagesId}/get_route_by_bus/`,
   "like-busroute": (busrouteId) => `/busroutes/${busrouteId}/like/`,
   "busroute-comments": (busrouteId) => `/busroutes/${busrouteId}/comments/`,
   ratings: "/ratings/",
@@ -48,8 +52,6 @@ export let endpoints = {
   send_mail_booking: "/send_mail_booking/send_mail_booking/",
   momo: "/momo/request_momo/",
   "return-momo": "/momo/return-momo/",
-  "history-find-by-bookingID": (bookingID) =>
-    `/bookinghistorys/find_by_bookingID/?bookingID=${bookingID}`,
   bookingID: (bookingID) => `/bookings/${bookingID}`,
   busroutes: "/busroutes/",
   "busroutes-detail": (busRouteId) => `/busroutes/${busRouteId}`,

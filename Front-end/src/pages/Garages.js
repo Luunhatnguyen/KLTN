@@ -98,6 +98,7 @@ function Articals(props) {
   results = (
     <>
       <h3
+      className="h3-garage"
         style={{
           marginTop: "-90px",
           fontSize: "26px",
@@ -146,7 +147,7 @@ function Articals(props) {
             data-wow-delay="00ms"
             data-wow-duration="1500ms"
           >
-            <h1>Trang Nhà Xe</h1>
+            <h1>Các Hãng Xe</h1>
             <p>Khám phá hành trình tuyệt vời tiếp theo của bạn</p>
           </div>
         </div>
